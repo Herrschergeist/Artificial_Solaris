@@ -1,0 +1,28 @@
+{
+  "creativetab.artificialsolaris.artificialsolaris": "Artificial Solaris",
+
+  "item.artificialsolaris.wrench": "Wrench",
+
+  "block.artificialsolaris.copper_solar_panel": "Copper Solar Panel",
+  "block.artificialsolaris.iron_solar_panel": "Iron Solar Panel",
+  "block.artificialsolaris.gold_solar_panel": "Gold Solar Panel",
+  "block.artificialsolaris.diamond_solar_panel": "Diamond Solar Panel",
+  "block.artificialsolaris.netherite_solar_panel": "Netherite Solar Panel",
+  "block.artificialsolaris.withering_solar_panel": "Withering Solar Panel",
+
+  "item.artificialsolaris.solcuprum_ingot": "Solcuprum Ingot",
+  "item.artificialsolaris.solaris_rose_ingot": "Solaris Rose Ingot",
+  "item.artificialsolaris.midas_gold_ingot": "Midas Gold Ingot",
+  "item.artificialsolaris.solaris_caught_gem": "Solaris Caught Gem",
+  "item.artificialsolaris.nox_caught_gem": "Nox Caught Gem",
+  "item.artificialsolaris.mythril_ingot": "Mythril Ingot",
+  "item.artificialsolaris.pure_star": "Pure Star",
+
+  "artificialsolaris.configuration.title": "Artificial Solaris Configs",
+  "artificialsolaris.configuration.section.artificialsolaris.common.toml": "Artificial Solaris Configs",
+  "artificialsolaris.configuration.section.artificialsolaris.common.toml.title": "Artificial Solaris Configs",
+  "artificialsolaris.configuration.items": "Artificial Solaris Item List",
+  "artificialsolaris.configuration.logDirtBlock": "Log Dirt Block",
+  "artificialsolaris.configuration.magicNumberIntroduction": "Magic Number Text",
+  "artificialsolaris.configuration.magicNumber": "Magic Number"
+}

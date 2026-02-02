@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "artificialsolaris:item/nox_caught_gem"
+  }
+}
