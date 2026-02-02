@@ -2,6 +2,7 @@ package dev.Herrschergeist.artificial_solaris.item;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
 import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
+import dev.Herrschergeist.artificial_solaris.item.custom.SolarPanelBlockItem;
 import dev.Herrschergeist.artificial_solaris.item.custom.WrenchItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -12,35 +13,36 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(artificial_solaris.MOD_ID);
 
-    public static final DeferredItem<BlockItem> COPPER_SOLAR_PANEL =
+    public static final DeferredItem<SolarPanelBlockItem> COPPER_SOLAR_PANEL =
             ITEMS.register("copper_solar_panel",
-                    () -> new BlockItem(ModBlocks.COPPER_SOLAR_PANEL.get(),
+                    () -> new SolarPanelBlockItem(ModBlocks.COPPER_SOLAR_PANEL.get(),
                             new Item.Properties()));
 
-    public static final DeferredItem<BlockItem> IRON_SOLAR_PANEL =
+    public static final DeferredItem<SolarPanelBlockItem> IRON_SOLAR_PANEL =
             ITEMS.register("iron_solar_panel",
-                    () -> new BlockItem(ModBlocks.IRON_SOLAR_PANEL.get(),
+                    () -> new SolarPanelBlockItem(ModBlocks.IRON_SOLAR_PANEL.get(),
                             new Item.Properties()));
 
-    public static final DeferredItem<BlockItem> GOLD_SOLAR_PANEL =
+    public static final DeferredItem<SolarPanelBlockItem> GOLD_SOLAR_PANEL =
             ITEMS.register("gold_solar_panel",
-                    () -> new BlockItem(ModBlocks.GOLD_SOLAR_PANEL.get(),
+                    () -> new SolarPanelBlockItem(ModBlocks.GOLD_SOLAR_PANEL.get(),
                             new Item.Properties()));
 
-    public static final DeferredItem<BlockItem> DIAMOND_SOLAR_PANEL =
+    public static final DeferredItem<SolarPanelBlockItem> DIAMOND_SOLAR_PANEL =
             ITEMS.register("diamond_solar_panel",
-                    () -> new BlockItem(ModBlocks.DIAMOND_SOLAR_PANEL.get(),
+                    () -> new SolarPanelBlockItem(ModBlocks.DIAMOND_SOLAR_PANEL.get(),
                             new Item.Properties()));
 
-    public static final DeferredItem<BlockItem> NETHERITE_SOLAR_PANEL =
+    public static final DeferredItem<SolarPanelBlockItem> NETHERITE_SOLAR_PANEL =
             ITEMS.register("netherite_solar_panel",
-                    () -> new BlockItem(ModBlocks.NETHERITE_SOLAR_PANEL.get(),
+                    () -> new SolarPanelBlockItem(ModBlocks.NETHERITE_SOLAR_PANEL.get(),
                             new Item.Properties()));
 
-    public static final DeferredItem<BlockItem> WITHERING_SOLAR_PANEL =
+    public static final DeferredItem<SolarPanelBlockItem> WITHERING_SOLAR_PANEL =
             ITEMS.register("withering_solar_panel",
-                    () -> new BlockItem(ModBlocks.WITHERING_SOLAR_PANEL.get(),
+                    () -> new SolarPanelBlockItem(ModBlocks.WITHERING_SOLAR_PANEL.get(),
                             new Item.Properties()));
+
 
 
     public static final DeferredItem<Item> WRENCH =
