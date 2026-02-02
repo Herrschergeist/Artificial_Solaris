@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "top": "artificialsolaris:block/solar_panel_top",
-    "bottom": "artificialsolaris:block/copper_solar_panel_bottom",
-    "side": "artificialsolaris:block/copper_solar_panel_side"
-  }
-}

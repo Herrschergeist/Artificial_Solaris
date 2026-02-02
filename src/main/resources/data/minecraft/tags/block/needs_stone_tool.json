@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "artificialsolaris:copper_solar_panel",
-    "artificialsolaris:iron_solar_panel"
+    "artificial_solaris:copper_solar_panel",
+    "artificial_solaris:iron_solar_panel"
   ]
 }

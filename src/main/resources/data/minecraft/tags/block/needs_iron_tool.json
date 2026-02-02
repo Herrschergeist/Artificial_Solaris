@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "artificialsolaris:gold_solar_panel",
-    "artificialsolaris:diamond_solar_panel"
+    "artificial_solaris:gold_solar_panel",
+    "artificial_solaris:diamond_solar_panel"
   ]
 }
