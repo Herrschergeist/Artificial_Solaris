@@ -1,12 +1,19 @@
 package dev.Herrschergeist.artificial_solaris.block.entity;
 
 import dev.Herrschergeist.artificial_solaris.block.SolarPanelBlock;
+import dev.Herrschergeist.artificial_solaris.block.menu.SolarPanelMenu;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,9 +23,30 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import org.jetbrains.annotations.NotNull;
 
-public class SolarPanelBlockEntity extends BlockEntity {
+public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
     private final CustomEnergyStorage energyStorage;
     private int tickCounter = 0;
+
+    private final ContainerData dataAccess = new ContainerData() {
+        @Override
+        public int get(int index) {
+            return switch (index) {
+                case 0 -> energyStorage.getEnergyStored();
+                case 1 -> energyStorage.getMaxEnergyStored();
+                default -> 0;
+            };
+        }
+
+        @Override
+        public void set(int index, int value) {
+            // Клиент получает данные с сервера, ничего не устанавливаем
+        }
+
+        @Override
+        public int getCount() {
+            return 2; // 2 значения: энергия и макс энергия
+        }
+    };
 
     public SolarPanelBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SOLAR_PANEL.get(), pos, state);
@@ -105,6 +133,20 @@ public class SolarPanelBlockEntity extends BlockEntity {
 
     public IEnergyStorage getEnergyStorage() {
         return energyStorage;
+    }
+
+    public ContainerData getDataAccess() {
+        return dataAccess;
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("container.artificial_solaris.solar_panel");
+    }
+
+    @Override
+    public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
+        return new SolarPanelMenu(containerId, playerInventory, this, this.dataAccess);
     }
 
     private static class CustomEnergyStorage extends EnergyStorage {

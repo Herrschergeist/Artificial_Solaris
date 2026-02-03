@@ -6,6 +6,7 @@ import dev.Herrschergeist.artificial_solaris.item.custom.SolarPanelBlockItem;
 import dev.Herrschergeist.artificial_solaris.item.custom.WrenchItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -16,32 +17,38 @@ public class ModItems {
     public static final DeferredItem<SolarPanelBlockItem> COPPER_SOLAR_PANEL =
             ITEMS.register("copper_solar_panel",
                     () -> new SolarPanelBlockItem(ModBlocks.COPPER_SOLAR_PANEL.get(),
-                            new Item.Properties()));
+                            new Item.Properties()
+                                    .rarity(Rarity.COMMON)));
 
     public static final DeferredItem<SolarPanelBlockItem> IRON_SOLAR_PANEL =
             ITEMS.register("iron_solar_panel",
                     () -> new SolarPanelBlockItem(ModBlocks.IRON_SOLAR_PANEL.get(),
-                            new Item.Properties()));
+                            new Item.Properties()
+                                    .rarity(Rarity.COMMON)));
 
     public static final DeferredItem<SolarPanelBlockItem> GOLD_SOLAR_PANEL =
             ITEMS.register("gold_solar_panel",
                     () -> new SolarPanelBlockItem(ModBlocks.GOLD_SOLAR_PANEL.get(),
-                            new Item.Properties()));
+                            new Item.Properties()
+                                    .rarity(Rarity.UNCOMMON)));
 
     public static final DeferredItem<SolarPanelBlockItem> DIAMOND_SOLAR_PANEL =
             ITEMS.register("diamond_solar_panel",
                     () -> new SolarPanelBlockItem(ModBlocks.DIAMOND_SOLAR_PANEL.get(),
-                            new Item.Properties()));
+                            new Item.Properties()
+                                    .rarity(Rarity.RARE)));
 
     public static final DeferredItem<SolarPanelBlockItem> NETHERITE_SOLAR_PANEL =
             ITEMS.register("netherite_solar_panel",
                     () -> new SolarPanelBlockItem(ModBlocks.NETHERITE_SOLAR_PANEL.get(),
-                            new Item.Properties()));
+                            new Item.Properties()
+                                    .rarity(Rarity.RARE)));
 
     public static final DeferredItem<SolarPanelBlockItem> WITHERING_SOLAR_PANEL =
             ITEMS.register("withering_solar_panel",
                     () -> new SolarPanelBlockItem(ModBlocks.WITHERING_SOLAR_PANEL.get(),
-                            new Item.Properties()));
+                            new Item.Properties()
+                                    .rarity(Rarity.EPIC)));
 
 
 

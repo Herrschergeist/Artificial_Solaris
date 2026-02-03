@@ -5,6 +5,7 @@
   "tooltip.artificial_solaris.wrench.info": "§7Right-click machines to interact",
   "tooltip.artificial_solaris.wrench.usage": "§7Shift + Right-click to pick up with NBT data",
 
+  "container.artificial_solaris.solar_panel": "Solar Panel",
   "block.artificial_solaris.copper_solar_panel": "Copper Solar Panel",
   "block.artificial_solaris.iron_solar_panel": "Iron Solar Panel",
   "block.artificial_solaris.gold_solar_panel": "Gold Solar Panel",

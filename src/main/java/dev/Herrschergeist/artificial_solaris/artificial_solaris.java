@@ -4,6 +4,7 @@ import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
 import dev.Herrschergeist.artificial_solaris.item.ModCreativeModeTabs;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
+import dev.Herrschergeist.artificial_solaris.registry.ModMenuTypes;
 import net.minecraft.core.Direction;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -30,6 +31,7 @@ public class artificial_solaris {
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModCreativeModeTabs.CREATIVE_MODE_TAB.register(modEventBus);
+        ModMenuTypes.MENU_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::registerCapabilities);
 
