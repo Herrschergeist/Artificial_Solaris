@@ -29,12 +29,17 @@ public class ModCreativeModeTabs {
                                 output.accept(ModBlocks.NETHERITE_SOLAR_PANEL);
                                 output.accept(ModBlocks.WITHERING_SOLAR_PANEL);
 
-                                output.accept(ModItems.SOLCUPRUM_INGOT);
-                                output.accept(ModItems.SOLARIS_ROSE_INGOT);
-                                output.accept(ModItems.MIDAS_GOLD_INGOT);
+                                output.accept(ModBlocks.EXCITED_COPPER_BLOCK);
+                                output.accept(ModBlocks.EXCITED_IRON_BLOCK);
+                                output.accept(ModBlocks.EXCITED_GOLD_BLOCK);
+                                output.accept(ModBlocks.EXCITED_NETHERITE_BLOCK);
+
+                                output.accept(ModItems.EXCITED_COPPER_INGOT);
+                                output.accept(ModItems.EXCITED_IRON_INGOT);
+                                output.accept(ModItems.EXCITED_GOLD_INGOT);
                                 output.accept(ModItems.SOLARIS_CAUGHT_GEM);
                                 output.accept(ModItems.NOX_CAUGHT_GEM);
-                                output.accept(ModItems.MYTHRIL_INGOT);
+                                output.accept(ModItems.EXCITED_NETHERITE_INGOT);
                                 output.accept(ModItems.PURE_STAR);
                             }).build());
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "artificial_solaris:block/excited_gold_block"
+  }
+}

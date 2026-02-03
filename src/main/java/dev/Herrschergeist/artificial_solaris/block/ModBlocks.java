@@ -1,6 +1,7 @@
 package dev.Herrschergeist.artificial_solaris.block;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
+import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -17,11 +18,12 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(artificial_solaris.MOD_ID);
 
+    // Solar Panels (custom BlockItem もうある)
     public static final DeferredBlock<Block> COPPER_SOLAR_PANEL = BLOCKS.register(
             "copper_solar_panel",
             () -> new SolarPanelBlock(
                     BlockBehaviour.Properties.of()
-                            .strength(2.0f)
+                            .strength(3.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.COPPER),
                     16,
@@ -33,7 +35,7 @@ public class ModBlocks {
             "iron_solar_panel",
             () -> new SolarPanelBlock(
                     BlockBehaviour.Properties.of()
-                            .strength(3.0f)
+                            .strength(5.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL),
                     64,
@@ -57,7 +59,7 @@ public class ModBlocks {
             "diamond_solar_panel",
             () -> new SolarPanelBlock(
                     BlockBehaviour.Properties.of()
-                            .strength(4.0f)
+                            .strength(5.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL),
                     1024,
@@ -69,7 +71,7 @@ public class ModBlocks {
             "netherite_solar_panel",
             () -> new SolarPanelBlock(
                     BlockBehaviour.Properties.of()
-                            .strength(5.0f)
+                            .strength(30.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.NETHERITE_BLOCK),
                     4096,
@@ -88,6 +90,62 @@ public class ModBlocks {
                     100000000
             )
     );
+
+    // Новые блоки с автоматической регистрацией BlockItem
+    public static final DeferredBlock<Block> EXCITED_COPPER_BLOCK = registerBlockWithItem(
+            "excited_copper_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL)
+            )
+    );
+
+    public static final DeferredBlock<Block> EXCITED_IRON_BLOCK = registerBlockWithItem(
+            "excited_iron_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL)
+            )
+    );
+
+    public static final DeferredBlock<Block> EXCITED_GOLD_BLOCK = registerBlockWithItem(
+            "excited_gold_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL)
+            )
+    );
+
+    public static final DeferredBlock<Block> EXCITED_NETHERITE_BLOCK = registerBlockWithItem(
+            "excited_netherite_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(30.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHERITE_BLOCK)
+            )
+    );
+
+    // Additional method for automatic registration of BlockItem
+    private static <T extends Block> DeferredBlock<T> registerBlockWithItem(String name, Supplier<T> block) {
+        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+        registerBlockItem(name, toReturn);
+        return toReturn;
+    }
+
+    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

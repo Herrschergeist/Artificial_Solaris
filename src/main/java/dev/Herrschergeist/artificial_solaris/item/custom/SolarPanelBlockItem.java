@@ -1,6 +1,6 @@
 package dev.Herrschergeist.artificial_solaris.item.custom;
 
-import dev.Herrschergeist.artificial_solaris.block.SolarPanelBlock;
+import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;

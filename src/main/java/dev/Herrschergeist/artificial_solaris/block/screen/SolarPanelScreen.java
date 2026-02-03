@@ -1,6 +1,6 @@
 package dev.Herrschergeist.artificial_solaris.block.screen;
 
-import dev.Herrschergeist.artificial_solaris.block.SolarPanelBlock;
+import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
 import dev.Herrschergeist.artificial_solaris.block.menu.SolarPanelMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -107,7 +107,7 @@ public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu> {
 
         if (maxEnergy <= 0) return;
 
-        // Bar Pos 
+        // Bar Pos
         int barX = x + 8;
         int barY = y + 20;
         int barWidth = this.imageWidth - 16;

@@ -1,6 +1,6 @@
 package dev.Herrschergeist.artificial_solaris.block.entity;
 
-import dev.Herrschergeist.artificial_solaris.block.SolarPanelBlock;
+import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
 import dev.Herrschergeist.artificial_solaris.block.menu.SolarPanelMenu;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
 

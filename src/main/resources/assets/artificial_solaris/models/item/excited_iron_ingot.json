@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "artificial_solaris:item/solcuprum_ingot"
+    "layer0": "artificial_solaris:item/excited_iron_ingot"
   }
 }

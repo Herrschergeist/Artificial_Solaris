@@ -13,12 +13,17 @@
   "block.artificial_solaris.netherite_solar_panel": "Netherite Solar Panel",
   "block.artificial_solaris.withering_solar_panel": "Withering Solar Panel",
 
-  "item.artificial_solaris.solcuprum_ingot": "Solcuprum Ingot",
-  "item.artificial_solaris.solaris_rose_ingot": "Solaris Rose Ingot",
-  "item.artificial_solaris.midas_gold_ingot": "Midas Gold Ingot",
+  "block.artificial_solaris.excited_copper_block": "Block of Excited Copper",
+  "block.artificial_solaris.excited_iron_block": "Block of Excited Iron",
+  "block.artificial_solaris.excited_gold_block": "Block of Excited Gold",
+  "block.artificial_solaris.excited_netherite_block": "Block of Excited Netherite",
+
+  "item.artificial_solaris.excited_copper_ingot": "Excited Copper Ingot",
+  "item.artificial_solaris.excited_iron_ingot": "Excited Iron Ingot",
+  "item.artificial_solaris.excited_gold_ingot": "Excited Gold Ingot",
   "item.artificial_solaris.solaris_caught_gem": "Solaris Caught Gem",
   "item.artificial_solaris.nox_caught_gem": "Nox Caught Gem",
-  "item.artificial_solaris.mythril_ingot": "Mythril Ingot",
+  "item.artificial_solaris.excited_netherite_ingot": "Excited Netherite Ingot",
   "item.artificial_solaris.pure_star": "Pure Star",
 
   "artificial_solaris.configuration.title": "Artificial Solaris Configs",

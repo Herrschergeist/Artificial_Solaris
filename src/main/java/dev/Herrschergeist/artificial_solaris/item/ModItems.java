@@ -57,20 +57,20 @@ public class ModItems {
                     () -> new WrenchItem(new Item.Properties().stacksTo(1)));
 
 
-    public static final DeferredItem<Item> SOLCUPRUM_INGOT =
-            ITEMS.register("solcuprum_ingot",
+    public static final DeferredItem<Item> EXCITED_COPPER_INGOT =
+            ITEMS.register("excited_copper_ingot",
                     () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> SOLARIS_ROSE_INGOT =
-            ITEMS.register("solaris_rose_ingot",
+    public static final DeferredItem<Item> EXCITED_IRON_INGOT =
+            ITEMS.register("excited_iron_ingot",
                     () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> MIDAS_GOLD_INGOT =
-            ITEMS.register("midas_gold_ingot",
+    public static final DeferredItem<Item> EXCITED_GOLD_INGOT =
+            ITEMS.register("excited_gold_ingot",
                     () -> new Item(new Item.Properties()));
 
-    public static final DeferredItem<Item> MYTHRIL_INGOT =
-            ITEMS.register("mythril_ingot",
+    public static final DeferredItem<Item> EXCITED_NETHERITE_INGOT =
+            ITEMS.register("excited_netherite_ingot",
                     () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> SOLARIS_CAUGHT_GEM =
