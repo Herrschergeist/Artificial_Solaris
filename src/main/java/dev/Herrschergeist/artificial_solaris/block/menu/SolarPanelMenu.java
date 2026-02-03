@@ -25,10 +25,10 @@ public class SolarPanelMenu extends AbstractContainerMenu {
 
         addDataSlots(data);
 
-        // Слоты начинаются сразу после энергетической панели
+        // Slots start right after Energy Bar
         int slotStartY = ENERGY_PANEL_HEIGHT + GAP;
 
-        // Основной инвентарь (3 ряда по 9 слотов)
+        // Main Inventory (3 rows 9 slots)
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
                 this.addSlot(new Slot(playerInventory, col + row * 9 + 9,
@@ -36,7 +36,7 @@ public class SolarPanelMenu extends AbstractContainerMenu {
             }
         }
 
-        // Хотбар (9 слотов)
+        // Hotbar (9 slots)
         for (int col = 0; col < 9; col++) {
             this.addSlot(new Slot(playerInventory, col,
                     8 + col * 18, slotStartY + 62));

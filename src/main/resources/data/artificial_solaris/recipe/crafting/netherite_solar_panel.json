@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "ndn",
     "nrn",
@@ -17,6 +18,7 @@
     }
   },
   "result": {
+    "count": 1,
     "id": "artificial_solaris:netherite_solar_panel"
   }
 }

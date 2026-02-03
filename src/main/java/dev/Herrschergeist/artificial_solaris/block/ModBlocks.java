@@ -24,7 +24,7 @@ public class ModBlocks {
                             .strength(2.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.COPPER),
-                    40,
+                    16,
                     10000
             )
     );
@@ -36,8 +36,8 @@ public class ModBlocks {
                             .strength(3.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL),
-                    120,
-                    40000
+                    64,
+                    100000
             )
     );
 
@@ -48,8 +48,8 @@ public class ModBlocks {
                             .strength(3.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL),
-                    480,
-                    100000
+                    256,
+                    500000
             )
     );
 
@@ -60,8 +60,8 @@ public class ModBlocks {
                             .strength(4.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL),
-                    1500,
-                    500000
+                    1024,
+                    1000000
             )
     );
 
@@ -72,8 +72,8 @@ public class ModBlocks {
                             .strength(5.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.NETHERITE_BLOCK),
-                    5000,
-                    1000000
+                    4096,
+                    10000000
             )
     );
 
@@ -84,8 +84,8 @@ public class ModBlocks {
                             .strength(5.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.NETHERITE_BLOCK),
-                    50000,
-                    10000000
+                    16384,
+                    100000000
             )
     );
 

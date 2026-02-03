@@ -39,12 +39,12 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
 
         @Override
         public void set(int index, int value) {
-            // Клиент получает данные с сервера, ничего не устанавливаем
+            // Client gets the Data from a server, nothing to install
         }
 
         @Override
         public int getCount() {
-            return 2; // 2 значения: энергия и макс энергия
+            return 2; // 2 counts: energy and max energy
         }
     };
 
@@ -66,7 +66,7 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
 
         blockEntity.tickCounter++;
 
-        // Генерация энергии
+        // Energy Generation
         if (blockEntity.canGenerateEnergy(level, pos)) {
             int energyToGenerate = blockEntity.getEnergyGenerationRate(state);
             if (energyToGenerate > 0) {
@@ -74,13 +74,13 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
             }
         }
 
-        // Отдача энергии вниз каждые 5 тиков
+        // Giving Energy down every 20 ticks
         if (blockEntity.tickCounter % 20 == 0) {
             blockEntity.pushEnergyToBottom(level, pos);
         }
 
-        // Сохранение каждые 20 тиков
-        if (blockEntity.tickCounter % 20 == 0) {
+        // Save every 40 ticks
+        if (blockEntity.tickCounter % 40 == 0) {
             blockEntity.setChanged();
         }
     }

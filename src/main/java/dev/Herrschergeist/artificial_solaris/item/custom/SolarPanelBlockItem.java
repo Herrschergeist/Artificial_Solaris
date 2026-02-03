@@ -24,7 +24,7 @@ public class SolarPanelBlockItem extends BlockItem {
 
         if (!(getBlock() instanceof SolarPanelBlock solarPanel)) return;
 
-        // Получаем энергию из NBT
+        // get energy from NBT
         int storedEnergy = 0;
         CustomData blockEntityData = stack.get(DataComponents.BLOCK_ENTITY_DATA);
         if (blockEntityData != null) {
@@ -34,22 +34,22 @@ public class SolarPanelBlockItem extends BlockItem {
         int capacity = solarPanel.getCapacity();
         int generation = solarPanel.getEnergyPerTick();
 
-        // Пустая строка для отступа
+        // Empty filled for space
         tooltipComponents.add(Component.empty());
 
-        // Энергия
+        // Energy
         tooltipComponents.add(Component.literal("⚡ Energy: ")
                 .withStyle(ChatFormatting.GRAY)
                 .append(Component.literal(formatEnergy(storedEnergy) + " / " + formatEnergy(capacity))
                         .withStyle(ChatFormatting.YELLOW)));
 
-        // Выработка
+        // FE/t
         tooltipComponents.add(Component.literal("☀ FE/t: ")
                 .withStyle(ChatFormatting.GRAY)
                 .append(Component.literal(formatEnergy(generation) + " FE/t")
                         .withStyle(ChatFormatting.GREEN)));
 
-        // Процент заполнения (опционально)
+        // Fill Percentage (optional)
         if (storedEnergy > 0) {
             int percentage = (int) ((storedEnergy / (double) capacity) * 100);
             tooltipComponents.add(Component.literal("├ Capacity: ")
@@ -59,7 +59,7 @@ public class SolarPanelBlockItem extends BlockItem {
         }
     }
 
-    // Форматирование больших чисел (100000 -> 100k)
+    // Formating big numbers (100000 -> 100k)
     private String formatEnergy(int energy) {
         if (energy >= 1_000_000) {
             return String.format("%.1fM", energy / 1_000_000.0);

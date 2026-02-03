@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "aaa",
     "crc",
@@ -17,6 +18,7 @@
     }
   },
   "result": {
+    "count": 1,
     "id": "artificial_solaris:copper_solar_panel"
   }
 }

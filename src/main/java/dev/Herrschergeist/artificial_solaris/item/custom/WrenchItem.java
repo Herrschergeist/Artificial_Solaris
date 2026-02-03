@@ -49,41 +49,41 @@ public class WrenchItem extends Item {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
                 if (blockEntity == null) return InteractionResult.FAIL;
 
-                // Создаем ItemStack
+                // Creating ItemStack
                 ItemStack drop = new ItemStack(state.getBlock());
 
-                // Сохраняем NBT с ID
+                // Saving NBT с ID
                 CompoundTag tag = blockEntity.saveWithId(level.registryAccess());
 
-                // Удаляем координаты
+                // Deleting coordinates
                 tag.remove("x");
                 tag.remove("y");
                 tag.remove("z");
 
-                // **КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: очищаем инвентарь из NBT**
+                // Cleaning Inventory from NBT
                 tag.remove("Items");  // Стандартное поле для инвентаря
                 tag.remove("Inventory"); // Если используется другое имя
 
-                // Применяем NBT
+                // Using NBT
                 if (!tag.isEmpty()) {
                     drop.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(tag));
                 }
 
-                // **Сначала дропаем предметы из блока**
+                // Dropping items from the Block
                 state.getBlock().playerWillDestroy(level, pos, state, player);
 
-                // Удаляем блок из мира
+                // Removing Block from the World
                 level.removeBlock(pos, false);
 
-                // Звук
+                // Sound
                 level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 1.0F, 1.0F);
 
-                // Даём игроку
+                // Giving to Player
                 if (!player.getInventory().add(drop)) {
                     player.drop(drop, false);
                 }
 
-                // Урон инструменту
+                // Damage to the Tool
                 context.getItemInHand().hurtAndBreak(1, player, player.getEquipmentSlotForItem(context.getItemInHand()));
             }
             return InteractionResult.SUCCESS;

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients":[
+    {
+      "item":"artificial_solaris:copper_solar_panel"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:copper_solar_panel"
+  }
+}
