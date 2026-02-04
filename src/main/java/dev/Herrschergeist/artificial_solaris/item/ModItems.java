@@ -51,6 +51,26 @@ public class ModItems {
                                     .rarity(Rarity.EPIC)));
 
 
+    // ─── Photon Irradiator Items ──────────────────────────────
+    public static final DeferredItem<BlockItem> COPPER_PHOTON_IRRADIATOR =
+            ITEMS.register("copper_photon_irradiator",
+                    () -> new BlockItem(ModBlocks.COPPER_PHOTON_IRRADIATOR.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> IRON_PHOTON_IRRADIATOR =
+            ITEMS.register("iron_photon_irradiator",
+                    () -> new BlockItem(ModBlocks.IRON_PHOTON_IRRADIATOR.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> GOLD_PHOTON_IRRADIATOR =
+            ITEMS.register("gold_photon_irradiator",
+                    () -> new BlockItem(ModBlocks.GOLD_PHOTON_IRRADIATOR.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> DIAMOND_PHOTON_IRRADIATOR =
+            ITEMS.register("diamond_photon_irradiator",
+                    () -> new BlockItem(ModBlocks.DIAMOND_PHOTON_IRRADIATOR.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> NETHERITE_PHOTON_IRRADIATOR =
+            ITEMS.register("netherite_photon_irradiator",
+                    () -> new BlockItem(ModBlocks.NETHERITE_PHOTON_IRRADIATOR.get(), new Item.Properties()));
+    public static final DeferredItem<BlockItem> WITHERING_PHOTON_IRRADIATOR =
+            ITEMS.register("withering_photon_irradiator",
+                    () -> new BlockItem(ModBlocks.WITHERING_PHOTON_IRRADIATOR.get(), new Item.Properties()));
+
 
     public static final DeferredItem<Item> WRENCH =
             ITEMS.register("wrench",

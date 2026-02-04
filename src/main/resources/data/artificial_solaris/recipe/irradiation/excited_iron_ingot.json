@@ -1,0 +1,12 @@
+{
+  "type": "artificial_solaris:irradiation",
+  "ingredient": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "artificial_solaris:excited_iron_ingot",
+    "count": 1
+  },
+  "energy": 1000,
+  "processing_time": 500
+}

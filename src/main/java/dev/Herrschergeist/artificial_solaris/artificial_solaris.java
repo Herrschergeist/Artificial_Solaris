@@ -1,8 +1,10 @@
 package dev.Herrschergeist.artificial_solaris;
 
 import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
+import dev.Herrschergeist.artificial_solaris.block.screen.*;
 import dev.Herrschergeist.artificial_solaris.item.ModCreativeModeTabs;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
+import dev.Herrschergeist.artificial_solaris.recipe.ModRecipes;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
 import dev.Herrschergeist.artificial_solaris.registry.ModMenuTypes;
 import net.minecraft.core.Direction;
@@ -12,6 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -32,9 +35,10 @@ public class artificial_solaris {
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModCreativeModeTabs.CREATIVE_MODE_TAB.register(modEventBus);
         ModMenuTypes.MENU_TYPES.register(modEventBus);
+        ModRecipes.SERIALIZERS.register(modEventBus);
+        ModRecipes.TYPES.register(modEventBus);
 
         modEventBus.addListener(this::registerCapabilities);
-
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -49,13 +53,17 @@ public class artificial_solaris {
                     return null;
                 }
         );
+        // Photon Irradiator: accepts energy from all sides
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.PHOTON_IRRADIATOR.get(),
+                (blockEntity, direction) -> blockEntity.getEnergyStorage()
+        );
     }
-
 
     private void commonSetup(final FMLCommonSetupEvent event) {
 
     }
-
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
@@ -69,6 +77,16 @@ public class artificial_solaris {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event) {
+            event.register(ModMenuTypes.COPPER_PHOTON_IRRADIATOR.get(), CopperPhotonIrradiatorScreen::new);
+            event.register(ModMenuTypes.IRON_PHOTON_IRRADIATOR.get(), IronPhotonIrradiatorScreen::new);
+            event.register(ModMenuTypes.GOLD_PHOTON_IRRADIATOR.get(), GoldPhotonIrradiatorScreen::new);
+            event.register(ModMenuTypes.DIAMOND_PHOTON_IRRADIATOR.get(), DiamondPhotonIrradiatorScreen::new);
+            event.register(ModMenuTypes.NETHERITE_PHOTON_IRRADIATOR.get(), NetheritePhotonIrradiatorScreen::new);
+            event.register(ModMenuTypes.WITHERING_PHOTON_IRRADIATOR.get(), WitheringPhotonIrradiatorScreen::new);
         }
     }
 }

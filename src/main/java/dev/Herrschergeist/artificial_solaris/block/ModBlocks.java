@@ -1,6 +1,7 @@
 package dev.Herrschergeist.artificial_solaris.block;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
+import dev.Herrschergeist.artificial_solaris.block.custom.PhotonIrradiatorBlock;
 import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -135,6 +136,61 @@ public class ModBlocks {
                             .sound(SoundType.NETHERITE_BLOCK)
             )
     );
+
+    public static final DeferredBlock<Block> COPPER_PHOTON_IRRADIATOR = BLOCKS.register(
+            "copper_photon_irradiator",
+            () -> new PhotonIrradiatorBlock(
+                    BlockBehaviour.Properties.of().strength(2.5f).requiresCorrectToolForDrops().sound(SoundType.COPPER),
+                    1, 10000, 1000,
+                    2.0f    // 1x speed
+            )
+    );
+
+    public static final DeferredBlock<Block> IRON_PHOTON_IRRADIATOR = BLOCKS.register(
+            "iron_photon_irradiator",
+            () -> new PhotonIrradiatorBlock(
+                    BlockBehaviour.Properties.of().strength(3.0f).requiresCorrectToolForDrops().sound(SoundType.METAL),
+                    2, 50000, 5000,
+                    3.0f    // 2x speed
+            )
+    );
+
+    public static final DeferredBlock<Block> GOLD_PHOTON_IRRADIATOR = BLOCKS.register(
+            "gold_photon_irradiator",
+            () -> new PhotonIrradiatorBlock(
+                    BlockBehaviour.Properties.of().strength(3.0f).requiresCorrectToolForDrops().sound(SoundType.METAL),
+                    3, 200000, 20000,
+                    5.0f    // 5x speed
+            )
+    );
+
+    public static final DeferredBlock<Block> DIAMOND_PHOTON_IRRADIATOR = BLOCKS.register(
+            "diamond_photon_irradiator",
+            () -> new PhotonIrradiatorBlock(
+                    BlockBehaviour.Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.METAL),
+                    4, 500000, 50000,
+                    10.0f   // 10x speed
+            )
+    );
+
+    public static final DeferredBlock<Block> NETHERITE_PHOTON_IRRADIATOR = BLOCKS.register(
+            "netherite_photon_irradiator",
+            () -> new PhotonIrradiatorBlock(
+                    BlockBehaviour.Properties.of().strength(5.0f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK),
+                    5, 2000000, 200000,
+                    20.0f   // 20x speed
+            )
+    );
+
+    public static final DeferredBlock<Block> WITHERING_PHOTON_IRRADIATOR = BLOCKS.register(
+            "withering_photon_irradiator",
+            () -> new PhotonIrradiatorBlock(
+                    BlockBehaviour.Properties.of().strength(5.0f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK),
+                    6, 10000000, 1000000,
+                    50.0f   // 50x speed!
+            )
+    );
+
 
     // Additional method for automatic registration of BlockItem
     private static <T extends Block> DeferredBlock<T> registerBlockWithItem(String name, Supplier<T> block) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "artificial_solaris:block/gold_photon_irradiator"
+  }
+}

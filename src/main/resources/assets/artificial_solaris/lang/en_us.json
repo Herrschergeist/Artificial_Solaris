@@ -13,6 +13,14 @@
   "block.artificial_solaris.netherite_solar_panel": "Netherite Solar Panel",
   "block.artificial_solaris.withering_solar_panel": "Withering Solar Panel",
 
+  "container.artificial_solaris.photon_irradiator": "Photon Irradiator",
+  "block.artificial_solaris.copper_photon_irradiator": "Copper Photon Irradiator",
+  "block.artificial_solaris.iron_photon_irradiator": "Iron Photon Irradiator",
+  "block.artificial_solaris.gold_photon_irradiator": "Gold Photon Irradiator",
+  "block.artificial_solaris.diamond_photon_irradiator": "Diamond Photon Irradiator",
+  "block.artificial_solaris.netherite_photon_irradiator": "Netherite Photon Irradiator",
+  "block.artificial_solaris.withering_photon_irradiator": "Withering Photon Irradiator",
+
   "block.artificial_solaris.excited_copper_block": "Block of Excited Copper",
   "block.artificial_solaris.excited_iron_block": "Block of Excited Iron",
   "block.artificial_solaris.excited_gold_block": "Block of Excited Gold",

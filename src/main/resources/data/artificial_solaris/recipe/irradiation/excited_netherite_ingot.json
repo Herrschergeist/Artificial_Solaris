@@ -1,0 +1,12 @@
+{
+  "type": "artificial_solaris:irradiation",
+  "ingredient": {
+    "item": "minecraft:netherite_ingot"
+  },
+  "result": {
+    "id": "artificial_solaris:excited_netherite_ingot",
+    "count": 1
+  },
+  "energy": 5000,
+  "processing_time": 1000
+}

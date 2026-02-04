@@ -1,0 +1,12 @@
+{
+  "type": "artificial_solaris:irradiation",
+  "ingredient": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "artificial_solaris:excited_gold_ingot",
+    "count": 1
+  },
+  "energy": 2000,
+  "processing_time": 400
+}

@@ -1,0 +1,12 @@
+{
+  "type": "artificial_solaris:irradiation",
+  "ingredient": {
+    "item": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "artificial_solaris:excited_copper_ingot",
+    "count": 1
+  },
+  "energy": 500,
+  "processing_time": 300
+}

@@ -1,7 +1,6 @@
 package dev.Herrschergeist.artificial_solaris.item;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
-import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -13,35 +12,18 @@ import java.util.function.Supplier;
 
 public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
-        DeferredRegister.create(Registries.CREATIVE_MODE_TAB, artificial_solaris.MOD_ID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, artificial_solaris.MOD_ID);
 
     public static final Supplier<CreativeModeTab> ARTIFICIAL_SOLARIS =
             CREATIVE_MODE_TAB.register("artificial_solaris",
-                    () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.WRENCH.get()))
+                    () -> CreativeModeTab.builder()
+                            .icon(() -> new ItemStack(ModItems.WRENCH.get()))
                             .title(Component.translatable("creativetab.artificial_solaris.artificial_solaris"))
                             .displayItems((itemDisplayParameters, output) -> {
-                                output.accept(ModItems.WRENCH);
-
-                                output.accept(ModBlocks.COPPER_SOLAR_PANEL);
-                                output.accept(ModBlocks.IRON_SOLAR_PANEL);
-                                output.accept(ModBlocks.GOLD_SOLAR_PANEL);
-                                output.accept(ModBlocks.DIAMOND_SOLAR_PANEL);
-                                output.accept(ModBlocks.NETHERITE_SOLAR_PANEL);
-                                output.accept(ModBlocks.WITHERING_SOLAR_PANEL);
-
-                                output.accept(ModBlocks.EXCITED_COPPER_BLOCK);
-                                output.accept(ModBlocks.EXCITED_IRON_BLOCK);
-                                output.accept(ModBlocks.EXCITED_GOLD_BLOCK);
-                                output.accept(ModBlocks.EXCITED_NETHERITE_BLOCK);
-
-                                output.accept(ModItems.EXCITED_COPPER_INGOT);
-                                output.accept(ModItems.EXCITED_IRON_INGOT);
-                                output.accept(ModItems.EXCITED_GOLD_INGOT);
-                                output.accept(ModItems.SOLARIS_CAUGHT_GEM);
-                                output.accept(ModItems.NOX_CAUGHT_GEM);
-                                output.accept(ModItems.EXCITED_NETHERITE_INGOT);
-                                output.accept(ModItems.PURE_STAR);
-                            }).build());
+                                // Automatically add all items from ModItems registry
+                                ModItems.ITEMS.getEntries().forEach(item -> output.accept(item.get()));
+                            })
+                            .build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TAB.register(eventBus);

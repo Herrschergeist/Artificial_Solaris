@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "artificial_solaris:block/diamond_photon_irradiator"
+  }
+}
