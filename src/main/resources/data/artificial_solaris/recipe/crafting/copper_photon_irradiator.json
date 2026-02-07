@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ccc",
+    "cac",
+    "ccc"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_block"
+    },
+    "c": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:copper_photon_irradiator"
+  }
+}

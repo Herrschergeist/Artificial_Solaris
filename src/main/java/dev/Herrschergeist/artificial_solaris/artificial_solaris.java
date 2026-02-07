@@ -7,6 +7,8 @@ import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import dev.Herrschergeist.artificial_solaris.recipe.ModRecipes;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
 import dev.Herrschergeist.artificial_solaris.registry.ModMenuTypes;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -72,21 +74,33 @@ public class artificial_solaris {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
+    @EventBusSubscriber(modid = MOD_ID, value = Dist.CLIENT)
+    public static class ClientModEvents  {
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                ItemBlockRenderTypes.setRenderLayer(
+                        ModBlocks.EXCITED_COPPER_CHAIN.get(),
+                        RenderType.cutout()
+                );
 
+                ItemBlockRenderTypes.setRenderLayer(
+                        ModBlocks.DRAGON_FORGE.get(),
+                        RenderType.cutout()
+                );
+            });
         }
 
-        @SubscribeEvent
-        public static void registerScreens(RegisterMenuScreensEvent event) {
-            event.register(ModMenuTypes.COPPER_PHOTON_IRRADIATOR.get(), CopperPhotonIrradiatorScreen::new);
-            event.register(ModMenuTypes.IRON_PHOTON_IRRADIATOR.get(), IronPhotonIrradiatorScreen::new);
-            event.register(ModMenuTypes.GOLD_PHOTON_IRRADIATOR.get(), GoldPhotonIrradiatorScreen::new);
-            event.register(ModMenuTypes.DIAMOND_PHOTON_IRRADIATOR.get(), DiamondPhotonIrradiatorScreen::new);
-            event.register(ModMenuTypes.NETHERITE_PHOTON_IRRADIATOR.get(), NetheritePhotonIrradiatorScreen::new);
-            event.register(ModMenuTypes.WITHERING_PHOTON_IRRADIATOR.get(), WitheringPhotonIrradiatorScreen::new);
+            @SubscribeEvent
+            public static void registerScreens (RegisterMenuScreensEvent event){
+                event.register(ModMenuTypes.DRAGON_FORGE.get(), DragonForgeScreen::new);
+                event.register(ModMenuTypes.COPPER_PHOTON_IRRADIATOR.get(), CopperPhotonIrradiatorScreen::new);
+                event.register(ModMenuTypes.IRON_PHOTON_IRRADIATOR.get(), IronPhotonIrradiatorScreen::new);
+                event.register(ModMenuTypes.GOLD_PHOTON_IRRADIATOR.get(), GoldPhotonIrradiatorScreen::new);
+                event.register(ModMenuTypes.DIAMOND_PHOTON_IRRADIATOR.get(), DiamondPhotonIrradiatorScreen::new);
+                event.register(ModMenuTypes.NETHERITE_PHOTON_IRRADIATOR.get(), NetheritePhotonIrradiatorScreen::new);
+                event.register(ModMenuTypes.WITHERING_PHOTON_IRRADIATOR.get(), WitheringPhotonIrradiatorScreen::new);
+            }
         }
     }
-}

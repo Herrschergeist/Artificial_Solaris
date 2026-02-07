@@ -3,6 +3,10 @@
   "values": [
     "artificial_solaris:copper_solar_panel",
     "artificial_solaris:iron_solar_panel",
+    "artificial_solaris:copper_photon_irradiator",
+    "artificial_solaris:iron_photon_irradiator",
+    "artificial_solaris:dragon_forge",
+    "artificial_solaris:excited_copper_chain",
     "artificial_solaris:excited_copper_block",
     "artificial_solaris:excited_iron_block"
   ]

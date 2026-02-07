@@ -15,6 +15,17 @@ public class ModRecipes {
     public static final DeferredRegister<RecipeType<?>> TYPES =
             DeferredRegister.create(Registries.RECIPE_TYPE, artificial_solaris.MOD_ID);
 
+    public static final DeferredHolder<RecipeType<?>, RecipeType<DragonForgeRecipe>> DRAGON_FORGE_TYPE =
+            TYPES.register("dragon_forge", () -> new RecipeType<DragonForgeRecipe>() {
+                @Override
+                public String toString() {
+                    return "dragon_forge";
+                }
+            });
+
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<DragonForgeRecipe>> DRAGON_FORGE_SERIALIZER =
+            SERIALIZERS.register("dragon_forge", DragonForgeRecipe.Serializer::new);
+
     // Recipe Type
     public static final DeferredHolder<RecipeType<?>, RecipeType<IrradiationRecipe>> IRRADIATION_TYPE =
             TYPES.register("irradiation", () -> new RecipeType<>() {

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "nnn",
+    "npn",
+    "nnn"
+  ],
+  "key": {
+    "p": {
+      "item": "artificial_solaris:diamond_photon_irradiator"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:netherite_photon_irradiator"
+  }
+}

@@ -2,17 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "pattern": [
-    "c c",
-    " c ",
-    " c "
+    "n",
+    "i",
+    "n"
   ],
   "key": {
-    "c": {
+    "n": {
+      "item": "artificial_solaris:excited_copper_nugget"
+    },
+    "i": {
       "item": "artificial_solaris:excited_copper_ingot"
     }
   },
   "result": {
     "count": 1,
-    "id": "artificial_solaris:wrench"
+    "id": "artificial_solaris:excited_copper_chain"
   }
 }

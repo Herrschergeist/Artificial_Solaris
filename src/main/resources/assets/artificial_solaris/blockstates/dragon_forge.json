@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "facing=north,has_head=false": { "model": "artificial_solaris:block/dragon_forge_empty" },
+    "facing=south,has_head=false": { "model": "artificial_solaris:block/dragon_forge_empty", "y": 180 },
+    "facing=west,has_head=false": { "model": "artificial_solaris:block/dragon_forge_empty", "y": 270 },
+    "facing=east,has_head=false": { "model": "artificial_solaris:block/dragon_forge_empty", "y": 90 },
+
+    "facing=north,has_head=true": { "model": "artificial_solaris:block/dragon_forge" },
+    "facing=south,has_head=true": { "model": "artificial_solaris:block/dragon_forge", "y": 180 },
+    "facing=west,has_head=true": { "model": "artificial_solaris:block/dragon_forge", "y": 270 },
+    "facing=east,has_head=true": { "model": "artificial_solaris:block/dragon_forge", "y": 90 }
+  }
+}

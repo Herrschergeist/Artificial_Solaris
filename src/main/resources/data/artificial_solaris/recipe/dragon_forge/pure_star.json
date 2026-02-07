@@ -1,0 +1,13 @@
+{
+  "type": "artificial_solaris:dragon_forge",
+  "ingredient": {
+    "item": "minecraft:nether_star"
+  },
+  "result": {
+    "id": "artificial_solaris:pure_star",
+    "count": 1
+  },
+  "energy": 1000000,
+  "water": 10000,
+  "time": 100
+}

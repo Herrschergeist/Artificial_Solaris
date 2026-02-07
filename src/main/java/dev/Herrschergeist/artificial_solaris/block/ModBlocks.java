@@ -1,12 +1,16 @@
 package dev.Herrschergeist.artificial_solaris.block;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
+import dev.Herrschergeist.artificial_solaris.block.custom.DragonForgeBlock;
 import dev.Herrschergeist.artificial_solaris.block.custom.PhotonIrradiatorBlock;
+import dev.Herrschergeist.artificial_solaris.block.custom.ProtostarBlock;
 import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ChainBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -72,7 +76,7 @@ public class ModBlocks {
             "netherite_solar_panel",
             () -> new SolarPanelBlock(
                     BlockBehaviour.Properties.of()
-                            .strength(30.0f)
+                            .strength(10.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.NETHERITE_BLOCK),
                     4096,
@@ -84,7 +88,7 @@ public class ModBlocks {
             "withering_solar_panel",
             () -> new SolarPanelBlock(
                     BlockBehaviour.Properties.of()
-                            .strength(5.0f)
+                            .strength(12.0f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.NETHERITE_BLOCK),
                     16384,
@@ -92,7 +96,6 @@ public class ModBlocks {
             )
     );
 
-    // Новые блоки с автоматической регистрацией BlockItem
     public static final DeferredBlock<Block> EXCITED_COPPER_BLOCK = registerBlockWithItem(
             "excited_copper_block",
             () -> new Block(
@@ -101,6 +104,18 @@ public class ModBlocks {
                             .lightLevel(state -> 5)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL)
+            )
+    );
+
+    public static final DeferredBlock<ChainBlock> EXCITED_COPPER_CHAIN = registerBlockWithItem(
+            "excited_copper_chain",
+            () -> new ChainBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
+                            .noOcclusion()
             )
     );
 
@@ -130,18 +145,34 @@ public class ModBlocks {
             "excited_netherite_block",
             () -> new Block(
                     BlockBehaviour.Properties.of()
-                            .strength(30.0f)
+                            .strength(10.0f)
                             .lightLevel(state -> 5)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.NETHERITE_BLOCK)
             )
     );
 
+    public static final DeferredBlock<Block> PROTOSTAR = registerBlockWithItem(
+            "protostar",
+            () -> new ProtostarBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(1.0f)
+                            .lightLevel(state -> 10)
+                            .sound(SoundType.GLASS)
+                            .noOcclusion()
+            )
+    );
+
     public static final DeferredBlock<Block> COPPER_PHOTON_IRRADIATOR = BLOCKS.register(
             "copper_photon_irradiator",
             () -> new PhotonIrradiatorBlock(
-                    BlockBehaviour.Properties.of().strength(2.5f).requiresCorrectToolForDrops().sound(SoundType.COPPER),
-                    1, 10000, 1000,
+                    BlockBehaviour.Properties.of()
+                            .strength(2.5f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.COPPER),
+                    1,
+                    10000,
+                    1000,
                     2.0f    // 1x speed
             )
     );
@@ -149,8 +180,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> IRON_PHOTON_IRRADIATOR = BLOCKS.register(
             "iron_photon_irradiator",
             () -> new PhotonIrradiatorBlock(
-                    BlockBehaviour.Properties.of().strength(3.0f).requiresCorrectToolForDrops().sound(SoundType.METAL),
-                    2, 50000, 5000,
+                    BlockBehaviour.Properties.of()
+                            .strength(3.0f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL),
+                    2,
+                    50000,
+                    5000,
                     3.0f    // 2x speed
             )
     );
@@ -158,8 +194,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> GOLD_PHOTON_IRRADIATOR = BLOCKS.register(
             "gold_photon_irradiator",
             () -> new PhotonIrradiatorBlock(
-                    BlockBehaviour.Properties.of().strength(3.0f).requiresCorrectToolForDrops().sound(SoundType.METAL),
-                    3, 200000, 20000,
+                    BlockBehaviour.Properties.of()
+                            .strength(3.0f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL),
+                    3,
+                    200000,
+                    20000,
                     5.0f    // 5x speed
             )
     );
@@ -167,8 +208,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> DIAMOND_PHOTON_IRRADIATOR = BLOCKS.register(
             "diamond_photon_irradiator",
             () -> new PhotonIrradiatorBlock(
-                    BlockBehaviour.Properties.of().strength(4.0f).requiresCorrectToolForDrops().sound(SoundType.METAL),
-                    4, 500000, 50000,
+                    BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL),
+                    4,
+                    500000,
+                    50000,
                     10.0f   // 10x speed
             )
     );
@@ -176,8 +222,13 @@ public class ModBlocks {
     public static final DeferredBlock<Block> NETHERITE_PHOTON_IRRADIATOR = BLOCKS.register(
             "netherite_photon_irradiator",
             () -> new PhotonIrradiatorBlock(
-                    BlockBehaviour.Properties.of().strength(5.0f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK),
-                    5, 2000000, 200000,
+                    BlockBehaviour.Properties.of()
+                            .strength(5.0f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHERITE_BLOCK),
+                    5,
+                    2000000,
+                    200000,
                     20.0f   // 20x speed
             )
     );
@@ -185,12 +236,27 @@ public class ModBlocks {
     public static final DeferredBlock<Block> WITHERING_PHOTON_IRRADIATOR = BLOCKS.register(
             "withering_photon_irradiator",
             () -> new PhotonIrradiatorBlock(
-                    BlockBehaviour.Properties.of().strength(5.0f).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK),
-                    6, 10000000, 1000000,
+                    BlockBehaviour.Properties.of()
+                            .strength(5.0f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHERITE_BLOCK),
+                    6,
+                    10000000,
+                    1000000,
                     50.0f   // 50x speed!
             )
     );
 
+    public static final DeferredBlock<Block> DRAGON_FORGE = registerBlockWithItem(
+            "dragon_forge",
+            () -> new DragonForgeBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.5f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.ANVIL)
+                            .noOcclusion()
+            )
+    );
 
     // Additional method for automatic registration of BlockItem
     private static <T extends Block> DeferredBlock<T> registerBlockWithItem(String name, Supplier<T> block) {

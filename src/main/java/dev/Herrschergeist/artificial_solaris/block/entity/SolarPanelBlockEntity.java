@@ -26,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
     private final CustomEnergyStorage energyStorage;
     private int tickCounter = 0;
+    private boolean artificialSunlight = false;
+    private int artificialSunlightTimer = 0;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -52,13 +54,18 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
         super(ModBlockEntities.SOLAR_PANEL.get(), pos, state);
 
         int capacity = 100000;
-        int maxTransfer = 10000000;
+        int maxTransfer = 100000000;
 
         if (state.getBlock() instanceof SolarPanelBlock solarBlock) {
             capacity = solarBlock.getCapacity();
         }
 
         this.energyStorage = new CustomEnergyStorage(capacity, 0, maxTransfer);
+    }
+
+    public void setArtificialSunlight(boolean active) {
+        this.artificialSunlight = active;
+        this.artificialSunlightTimer = 40;
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, SolarPanelBlockEntity blockEntity) {
@@ -86,6 +93,19 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private boolean canGenerateEnergy(Level level, BlockPos pos) {
+        // Decrease artificial sunlight timer
+        if (artificialSunlightTimer > 0) {
+            artificialSunlightTimer--;
+        } else {
+            artificialSunlight = false;
+        }
+
+        // Check artificial sunlight first
+        if (artificialSunlight) {
+            return true;
+        }
+
+        // Check natural sunlight
         return level.isDay()
                 && level.canSeeSky(pos.above())
                 && !level.isRaining()

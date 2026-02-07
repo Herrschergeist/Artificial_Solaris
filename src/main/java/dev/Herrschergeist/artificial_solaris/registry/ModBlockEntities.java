@@ -2,6 +2,7 @@ package dev.Herrschergeist.artificial_solaris.registry;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
 import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
+import dev.Herrschergeist.artificial_solaris.block.entity.DragonForgeBlockEntity;
 import dev.Herrschergeist.artificial_solaris.block.entity.PhotonIrradiatorBlockEntity;
 import dev.Herrschergeist.artificial_solaris.block.entity.SolarPanelBlockEntity;
 import net.minecraft.core.registries.Registries;
@@ -25,6 +26,13 @@ public class ModBlockEntities {
                             ModBlocks.WITHERING_SOLAR_PANEL.get()
                     ).build(null)
             );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DragonForgeBlockEntity>> DRAGON_FORGE =
+            BLOCK_ENTITIES.register("dragon_forge",
+                    () -> BlockEntityType.Builder.of(
+                            DragonForgeBlockEntity::new,
+                            ModBlocks.DRAGON_FORGE.get()
+                    ).build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PhotonIrradiatorBlockEntity>> PHOTON_IRRADIATOR =
             BLOCK_ENTITIES.register("photon_irradiator", () ->

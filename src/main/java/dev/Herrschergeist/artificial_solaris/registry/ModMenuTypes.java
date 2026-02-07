@@ -16,6 +16,10 @@ public class ModMenuTypes {
             MENU_TYPES.register("solar_panel_menu",
                     () -> IMenuTypeExtension.create(SolarPanelMenu::new));
 
+    public static final DeferredHolder<MenuType<?>, MenuType<DragonForgeMenu>> DRAGON_FORGE =
+            MENU_TYPES.register("dragon_forge",
+                    () -> IMenuTypeExtension.create(DragonForgeMenu::new));
+
     public static final DeferredHolder<MenuType<?>, MenuType<CopperPhotonIrradiatorMenu>> COPPER_PHOTON_IRRADIATOR =
             MENU_TYPES.register("copper_photon_irradiator",
                     () -> IMenuTypeExtension.create(CopperPhotonIrradiatorMenu::new));

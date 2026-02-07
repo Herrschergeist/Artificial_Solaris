@@ -13,6 +13,9 @@
   "block.artificial_solaris.netherite_solar_panel": "Netherite Solar Panel",
   "block.artificial_solaris.withering_solar_panel": "Withering Solar Panel",
 
+  "container.artificial_solaris.dragon_forge": "Dragon Forge",
+  "block.artificial_solaris.dragon_forge": "Dragon Forge",
+
   "container.artificial_solaris.photon_irradiator": "Photon Irradiator",
   "block.artificial_solaris.copper_photon_irradiator": "Copper Photon Irradiator",
   "block.artificial_solaris.iron_photon_irradiator": "Iron Photon Irradiator",
@@ -22,11 +25,15 @@
   "block.artificial_solaris.withering_photon_irradiator": "Withering Photon Irradiator",
 
   "block.artificial_solaris.excited_copper_block": "Block of Excited Copper",
+  "block.artificial_solaris.excited_copper_chain": "Excited Copper Chain",
   "block.artificial_solaris.excited_iron_block": "Block of Excited Iron",
   "block.artificial_solaris.excited_gold_block": "Block of Excited Gold",
   "block.artificial_solaris.excited_netherite_block": "Block of Excited Netherite",
 
+  "block.artificial_solaris.protostar": "Protostar",
+
   "item.artificial_solaris.excited_copper_ingot": "Excited Copper Ingot",
+  "item.artificial_solaris.excited_copper_nugget": "Excited Copper Nugget",
   "item.artificial_solaris.excited_iron_ingot": "Excited Iron Ingot",
   "item.artificial_solaris.excited_gold_ingot": "Excited Gold Ingot",
   "item.artificial_solaris.solaris_caught_gem": "Solaris Caught Gem",

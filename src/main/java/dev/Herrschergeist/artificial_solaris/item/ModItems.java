@@ -81,6 +81,10 @@ public class ModItems {
             ITEMS.register("excited_copper_ingot",
                     () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> EXCITED_COPPER_NUGGET =
+            ITEMS.register("excited_copper_nugget",
+                    () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<Item> EXCITED_IRON_INGOT =
             ITEMS.register("excited_iron_ingot",
                     () -> new Item(new Item.Properties()));
