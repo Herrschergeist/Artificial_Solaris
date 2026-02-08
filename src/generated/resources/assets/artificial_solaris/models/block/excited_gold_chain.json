@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/chain",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "all": "artificial_solaris:block/excited_gold_chain",
+    "particle": "artificial_solaris:block/excited_gold_chain"
+  }
+}

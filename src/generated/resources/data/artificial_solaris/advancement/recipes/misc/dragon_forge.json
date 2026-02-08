@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blaze_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:blaze_rod"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_excited_copper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artificial_solaris:excited_copper_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artificial_solaris:dragon_forge"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blaze_rod",
+      "has_excited_copper"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artificial_solaris:dragon_forge"
+    ]
+  }
+}

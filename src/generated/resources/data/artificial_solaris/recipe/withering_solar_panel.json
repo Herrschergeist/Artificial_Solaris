@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:netherite_block"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "S": {
+      "item": "artificial_solaris:netherite_solar_panel"
+    }
+  },
+  "pattern": [
+    "BNB",
+    "NSN",
+    "BNB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:withering_solar_panel"
+  }
+}

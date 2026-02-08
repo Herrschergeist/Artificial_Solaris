@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "artificial_solaris:item/excited_netherite_chain"
-  }
-}

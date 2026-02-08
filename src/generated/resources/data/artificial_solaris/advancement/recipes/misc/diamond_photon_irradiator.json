@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gold_irradiator": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artificial_solaris:gold_photon_irradiator"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artificial_solaris:diamond_photon_irradiator"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gold_irradiator"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artificial_solaris:diamond_photon_irradiator"
+    ]
+  }
+}

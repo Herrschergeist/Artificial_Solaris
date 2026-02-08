@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:netherite_block"
+    },
+    "P": {
+      "item": "artificial_solaris:netherite_photon_irradiator"
+    },
+    "S": {
+      "item": "minecraft:nether_star"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "SPS",
+    "BSB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:withering_photon_irradiator"
+  }
+}

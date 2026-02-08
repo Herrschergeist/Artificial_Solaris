@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "item": "artificial_solaris:excited_copper_ingot"
+    }
+  },
+  "pattern": [
+    "I I",
+    " I ",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:wrench"
+  }
+}

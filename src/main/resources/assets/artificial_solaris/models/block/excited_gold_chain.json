@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/chain",
-  "textures": {
-    "particle": "artificial_solaris:block/excited_gold_chain",
-    "all": "artificial_solaris:block/excited_gold_chain"
-  }
-}

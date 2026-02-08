@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "item": "artificial_solaris:copper_solar_panel"
+    }
+  },
+  "pattern": [
+    "ISI",
+    "IRI",
+    "IBI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:iron_solar_panel"
+  }
+}

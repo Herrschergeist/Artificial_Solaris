@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "artificial_solaris:excited_iron_chain"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "I": {
+      "item": "artificial_solaris:excited_iron_ingot"
+    }
+  },
+  "pattern": [
+    "ICI",
+    "CEC",
+    "ICI"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:stellar_cage_tier1"
+  }
+}

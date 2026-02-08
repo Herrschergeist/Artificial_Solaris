@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "item": "artificial_solaris:diamond_solar_panel"
+    }
+  },
+  "pattern": [
+    "NSN",
+    "NRN",
+    "NNN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:netherite_solar_panel"
+  }
+}

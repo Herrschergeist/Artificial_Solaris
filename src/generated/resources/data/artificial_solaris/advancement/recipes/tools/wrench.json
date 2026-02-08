@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_excited_copper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "artificial_solaris:excited_copper_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "artificial_solaris:wrench"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_excited_copper"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "artificial_solaris:wrench"
+    ]
+  }
+}

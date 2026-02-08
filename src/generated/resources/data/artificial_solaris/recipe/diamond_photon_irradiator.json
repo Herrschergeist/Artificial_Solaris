@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "P": {
+      "item": "artificial_solaris:gold_photon_irradiator"
+    }
+  },
+  "pattern": [
+    "DDD",
+    "DPD",
+    "DDD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:diamond_photon_irradiator"
+  }
+}

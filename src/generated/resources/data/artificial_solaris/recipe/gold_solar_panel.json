@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:gold_block"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "item": "artificial_solaris:iron_solar_panel"
+    }
+  },
+  "pattern": [
+    "GSG",
+    "GRG",
+    "BGB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:gold_solar_panel"
+  }
+}

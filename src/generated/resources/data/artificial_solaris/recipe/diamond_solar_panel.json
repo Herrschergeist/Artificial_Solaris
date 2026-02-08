@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:diamond_block"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    },
+    "S": {
+      "item": "artificial_solaris:gold_solar_panel"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "DRD",
+    "DBD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:diamond_solar_panel"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:blaze_rod"
+    },
+    "C": {
+      "item": "artificial_solaris:excited_copper_block"
+    },
+    "G": {
+      "tag": "c:glass_blocks"
+    },
+    "I": {
+      "item": "artificial_solaris:excited_copper_ingot"
+    }
+  },
+  "pattern": [
+    "CCC",
+    "GBI",
+    "III"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:dragon_forge"
+  }
+}
