@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "artificial_solaris:block/excited_netherite_chain",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "artificial_solaris:block/excited_netherite_chain"
+    },
+    "axis=z": {
+      "model": "artificial_solaris:block/excited_netherite_chain",
+      "x": 90
+    }
+  },
+  "render_type": "cutout"
+}

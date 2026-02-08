@@ -23,7 +23,101 @@ public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
             DeferredRegister.createBlocks(artificial_solaris.MOD_ID);
 
-    // Solar Panels (custom BlockItem もうある)
+    // ─── Deco Blocks ──────────────────────────────
+    public static final DeferredBlock<Block> EXCITED_COPPER_BLOCK = registerBlockWithItem(
+            "excited_copper_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL)
+            )
+    );
+
+    public static final DeferredBlock<ChainBlock> EXCITED_COPPER_CHAIN = registerBlockWithItem(
+            "excited_copper_chain",
+            () -> new ChainBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
+                            .noOcclusion()
+            )
+    );
+
+    public static final DeferredBlock<Block> EXCITED_IRON_BLOCK = registerBlockWithItem(
+            "excited_iron_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(4.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL)
+            )
+    );
+
+    public static final DeferredBlock<ChainBlock> EXCITED_IRON_CHAIN = registerBlockWithItem(
+            "excited_iron_chain",
+            () -> new ChainBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(3.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
+                            .noOcclusion()
+            )
+    );
+
+    public static final DeferredBlock<Block> EXCITED_GOLD_BLOCK = registerBlockWithItem(
+            "excited_gold_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL)
+            )
+    );
+
+    public static final DeferredBlock<ChainBlock> EXCITED_GOLD_CHAIN = registerBlockWithItem(
+            "excited_gold_chain",
+            () -> new ChainBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
+                            .noOcclusion()
+            )
+    );
+
+    public static final DeferredBlock<Block> EXCITED_NETHERITE_BLOCK = registerBlockWithItem(
+            "excited_netherite_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(10.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHERITE_BLOCK)
+            )
+    );
+
+    public static final DeferredBlock<ChainBlock> EXCITED_NETHERITE_CHAIN = registerBlockWithItem(
+            "excited_netherite_chain",
+            () -> new ChainBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(7.0f)
+                            .lightLevel(state -> 5)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.CHAIN)
+                            .noOcclusion()
+            )
+    );
+
+
+    // ─── Solar Panel Blocks ──────────────────────────────
     public static final DeferredBlock<Block> COPPER_SOLAR_PANEL = BLOCKS.register(
             "copper_solar_panel",
             () -> new SolarPanelBlock(
@@ -96,73 +190,8 @@ public class ModBlocks {
             )
     );
 
-    public static final DeferredBlock<Block> EXCITED_COPPER_BLOCK = registerBlockWithItem(
-            "excited_copper_block",
-            () -> new Block(
-                    BlockBehaviour.Properties.of()
-                            .strength(2.0f)
-                            .lightLevel(state -> 5)
-                            .requiresCorrectToolForDrops()
-                            .sound(SoundType.METAL)
-            )
-    );
 
-    public static final DeferredBlock<ChainBlock> EXCITED_COPPER_CHAIN = registerBlockWithItem(
-            "excited_copper_chain",
-            () -> new ChainBlock(
-                    BlockBehaviour.Properties.of()
-                            .strength(2.0f)
-                            .lightLevel(state -> 5)
-                            .requiresCorrectToolForDrops()
-                            .sound(SoundType.CHAIN)
-                            .noOcclusion()
-            )
-    );
-
-    public static final DeferredBlock<Block> EXCITED_IRON_BLOCK = registerBlockWithItem(
-            "excited_iron_block",
-            () -> new Block(
-                    BlockBehaviour.Properties.of()
-                            .strength(4.0f)
-                            .lightLevel(state -> 5)
-                            .requiresCorrectToolForDrops()
-                            .sound(SoundType.METAL)
-            )
-    );
-
-    public static final DeferredBlock<Block> EXCITED_GOLD_BLOCK = registerBlockWithItem(
-            "excited_gold_block",
-            () -> new Block(
-                    BlockBehaviour.Properties.of()
-                            .strength(2.0f)
-                            .lightLevel(state -> 5)
-                            .requiresCorrectToolForDrops()
-                            .sound(SoundType.METAL)
-            )
-    );
-
-    public static final DeferredBlock<Block> EXCITED_NETHERITE_BLOCK = registerBlockWithItem(
-            "excited_netherite_block",
-            () -> new Block(
-                    BlockBehaviour.Properties.of()
-                            .strength(10.0f)
-                            .lightLevel(state -> 5)
-                            .requiresCorrectToolForDrops()
-                            .sound(SoundType.NETHERITE_BLOCK)
-            )
-    );
-
-    public static final DeferredBlock<Block> PROTOSTAR = registerBlockWithItem(
-            "protostar",
-            () -> new ProtostarBlock(
-                    BlockBehaviour.Properties.of()
-                            .strength(1.0f)
-                            .lightLevel(state -> 10)
-                            .sound(SoundType.GLASS)
-                            .noOcclusion()
-            )
-    );
-
+    // ─── Photon Irradiator Blocks ──────────────────────────────
     public static final DeferredBlock<Block> COPPER_PHOTON_IRRADIATOR = BLOCKS.register(
             "copper_photon_irradiator",
             () -> new PhotonIrradiatorBlock(
@@ -247,13 +276,28 @@ public class ModBlocks {
             )
     );
 
-    public static final DeferredBlock<Block> DRAGON_FORGE = registerBlockWithItem(
+
+    // ─── Dragon Forge Block ──────────────────────────────
+    public static final DeferredBlock<Block> DRAGON_FORGE = BLOCKS.register(
             "dragon_forge",
             () -> new DragonForgeBlock(
                     BlockBehaviour.Properties.of()
                             .strength(2.5f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.ANVIL)
+                            .noOcclusion()
+            )
+    );
+
+
+    // ─── Star Blocks ──────────────────────────────
+    public static final DeferredBlock<Block> PROTOSTAR = BLOCKS.register(
+            "protostar",
+            () -> new ProtostarBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(1.0f)
+                            .lightLevel(state -> 10)
+                            .sound(SoundType.GLASS)
                             .noOcclusion()
             )
     );

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "n",
+    "i",
+    "n"
+  ],
+  "key": {
+    "n": {
+      "item": "artificial_solaris:excited_gold_nugget"
+    },
+    "i": {
+      "item": "artificial_solaris:excited_gold_ingot"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:excited_gold_chain"
+  }
+}

@@ -22,7 +22,7 @@ import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+
 
 
 @Mod(artificial_solaris.MOD_ID)
@@ -39,6 +39,7 @@ public class artificial_solaris {
         ModMenuTypes.MENU_TYPES.register(modEventBus);
         ModRecipes.SERIALIZERS.register(modEventBus);
         ModRecipes.TYPES.register(modEventBus);
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
 
         modEventBus.addListener(this::registerCapabilities);
     }
@@ -63,10 +64,6 @@ public class artificial_solaris {
         );
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-
-    }
-
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
@@ -82,6 +79,18 @@ public class artificial_solaris {
             event.enqueueWork(() -> {
                 ItemBlockRenderTypes.setRenderLayer(
                         ModBlocks.EXCITED_COPPER_CHAIN.get(),
+                        RenderType.cutout()
+                );
+                ItemBlockRenderTypes.setRenderLayer(
+                        ModBlocks.EXCITED_IRON_CHAIN.get(),
+                        RenderType.cutout()
+                );
+                ItemBlockRenderTypes.setRenderLayer(
+                        ModBlocks.EXCITED_GOLD_CHAIN.get(),
+                        RenderType.cutout()
+                );
+                ItemBlockRenderTypes.setRenderLayer(
+                        ModBlocks.EXCITED_NETHERITE_CHAIN.get(),
                         RenderType.cutout()
                 );
 
