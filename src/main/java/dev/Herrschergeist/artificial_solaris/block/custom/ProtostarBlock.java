@@ -7,7 +7,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -49,10 +48,10 @@ public class ProtostarBlock extends Block {
     }
 
     private void applyArtificialSunlight(ServerLevel level, BlockPos protostarPos) {
-        // Search for solar panels in 7x7x7 area
+        // Search for solar panels below in 7x7 horizontal area
         BlockPos.betweenClosed(
                 protostarPos.offset(-RADIUS, -RADIUS, -RADIUS),
-                protostarPos.offset(RADIUS, RADIUS, RADIUS)
+                protostarPos.offset(RADIUS, 0, RADIUS)
         ).forEach(pos -> {
             BlockEntity be = level.getBlockEntity(pos);
             if (be instanceof SolarPanelBlockEntity solarPanel) {
