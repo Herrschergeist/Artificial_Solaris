@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "L": {
+      "item": "artificial_solaris:lunaris_shard"
+    }
+  },
+  "pattern": [
+    "LL",
+    "LL"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:lunaris_block"
+  }
+}

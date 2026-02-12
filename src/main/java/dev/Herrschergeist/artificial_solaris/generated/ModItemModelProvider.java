@@ -33,16 +33,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         blockItem(ModBlocks.WITHERING_SOLAR_PANEL);
 
         // ═══════════════════════════════════════════════════════
-        // PHOTON IRRADIATORS - use parent block models
-        // ═══════════════════════════════════════════════════════
-        blockItem(ModBlocks.COPPER_PHOTON_IRRADIATOR);
-        blockItem(ModBlocks.IRON_PHOTON_IRRADIATOR);
-        blockItem(ModBlocks.GOLD_PHOTON_IRRADIATOR);
-        blockItem(ModBlocks.DIAMOND_PHOTON_IRRADIATOR);
-        blockItem(ModBlocks.NETHERITE_PHOTON_IRRADIATOR);
-        blockItem(ModBlocks.WITHERING_PHOTON_IRRADIATOR);
-
-        // ═══════════════════════════════════════════════════════
         // EXCITED CHAINS - special handling for chain items
         // Chains need "generated" parent, not the block model
         // ═══════════════════════════════════════════════════════
@@ -62,6 +52,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.EXCITED_GOLD_NUGGET.get());
         basicItem(ModItems.EXCITED_NETHERITE_INGOT.get());
         basicItem(ModItems.EXCITED_NETHERITE_NUGGET.get());
+        basicItem(ModItems.LUNARIS_SHARD.get());
 
         // ═══════════════════════════════════════════════════════
         // GEMS AND SPECIAL ITEMS
@@ -69,6 +60,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SOLARIS_CAUGHT_GEM.get());
         basicItem(ModItems.NOX_CAUGHT_GEM.get());
         basicItem(ModItems.PURE_STAR.get());
+        basicItem(ModItems.RESURRECTED_LOGIC.get());
 
         // ═══════════════════════════════════════════════════════
         // STELLAR CAGES
@@ -86,6 +78,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         // ═══════════════════════════════════════════════════════
         withExistingParent(ModItems.WRENCH.getId().getPath(), mcLoc("item/handheld"))
                 .texture("layer0", modLoc("item/" + ModItems.WRENCH.getId().getPath()));
+        withExistingParent(ModItems.LUNARIS_REAPER.getId().getPath(), mcLoc("item/handheld"))
+                .texture("layer0", modLoc("item/" + ModItems.LUNARIS_REAPER.getId().getPath()));
     }
 
     /**

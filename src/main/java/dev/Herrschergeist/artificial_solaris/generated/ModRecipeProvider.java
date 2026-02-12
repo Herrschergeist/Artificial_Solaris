@@ -275,6 +275,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_excited_netherite_ingot", has(ModItems.EXCITED_NETHERITE_INGOT.get()))
                 .save(recipeOutput, "excited_netherite_nugget_from_ingot");
 
+        // Lunaris Shard
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.LUNARIS_BLOCK.get())
+                .pattern("LL")
+                .pattern("LL")
+                .define('L', ModItems.LUNARIS_SHARD.get())
+                .unlockedBy("has_lunaris_shard", has(ModItems.LUNARIS_SHARD.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.LUNARIS_SHARD.get(), 4)
+                .requires(ModBlocks.LUNARIS_BLOCK.get())
+                .unlockedBy("has_lunaris_block", has(ModBlocks.LUNARIS_BLOCK.get()))
+                .save(recipeOutput, "lunaris_shard_from_block");
         // ═══════════════════════════════════════════════════════
         // EXCITED CHAINS
         // ═══════════════════════════════════════════════════════
@@ -351,8 +363,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("DND")
                 .pattern("NTN")
                 .pattern("DND")
-                .define('D', Items.DIAMOND)
-                .define('N', Items.NETHERITE_INGOT)
+                .define('D', ModItems.LUNARIS_SHARD)
+                .define('N', ModBlocks.EXCITED_NETHERITE_CHAIN.get())
                 .define('T', ModItems.STELLAR_CAGE_TIER1.get())
                 .unlockedBy("has_tier1_cage", has(ModItems.STELLAR_CAGE_TIER1.get()))
                 .unlockedBy("has_netherite", has(Items.NETHERITE_INGOT))
@@ -368,6 +380,30 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" I ")
                 .define('I', ModItems.EXCITED_COPPER_INGOT)
                 .unlockedBy("has_excited_copper", has(ModItems.EXCITED_COPPER_INGOT))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.LUNARIS_REAPER.get())
+                .pattern("LLL")
+                .pattern(" S ")
+                .pattern("S  ")
+                .define('L', ModItems.LUNARIS_SHARD.get())
+                .define('S', Items.STICK)
+                .unlockedBy("has_excited_copper", has(ModItems.EXCITED_COPPER_INGOT))
+                .save(recipeOutput);
+
+        // ═══════════════════════════════════════════════════════
+        // STAR ITEMS
+        // ═══════════════════════════════════════════════════════
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOLARIS_RESTRAINT.get())
+                .pattern("NSN")
+                .pattern("SRS")
+                .pattern("NSN")
+                .define('N', ModItems.EXCITED_NETHERITE_INGOT)
+                .define('S', ModItems.STELLAR_CAGE_TIER2)
+                .define('R', ModItems.RESURRECTED_LOGIC)
+                .unlockedBy("has_tier2_cage", has(ModItems.STELLAR_CAGE_TIER2))
+                .unlockedBy("has_resurrected_logic", has(ModItems.RESURRECTED_LOGIC))
                 .save(recipeOutput);
 
     }

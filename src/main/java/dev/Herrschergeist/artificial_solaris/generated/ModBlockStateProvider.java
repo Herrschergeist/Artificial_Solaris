@@ -33,6 +33,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.EXCITED_IRON_BLOCK);
         blockWithItem(ModBlocks.EXCITED_GOLD_BLOCK);
         blockWithItem(ModBlocks.EXCITED_NETHERITE_BLOCK);
+        blockWithItem(ModBlocks.LUNARIS_BLOCK);
 
         // ═══════════════════════════════════════════════════════
         // EXCITED CHAINS - directional blocks like vanilla chains
@@ -66,30 +67,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // ═══════════════════════════════════════════════════════
         // PHOTON IRRADIATORS - simple blocks
         // ═══════════════════════════════════════════════════════
-        simpleBlock(ModBlocks.COPPER_PHOTON_IRRADIATOR.get(),
-                models().getExistingFile(modLoc("block/copper_photon_irradiator")));
-
-        simpleBlock(ModBlocks.IRON_PHOTON_IRRADIATOR.get(),
-                models().getExistingFile(modLoc("block/iron_photon_irradiator")));
-
-        simpleBlock(ModBlocks.GOLD_PHOTON_IRRADIATOR.get(),
-                models().getExistingFile(modLoc("block/gold_photon_irradiator")));
-
-        simpleBlock(ModBlocks.DIAMOND_PHOTON_IRRADIATOR.get(),
-                models().getExistingFile(modLoc("block/diamond_photon_irradiator")));
-
-        simpleBlock(ModBlocks.NETHERITE_PHOTON_IRRADIATOR.get(),
-                models().getExistingFile(modLoc("block/netherite_photon_irradiator")));
-
-        simpleBlock(ModBlocks.WITHERING_PHOTON_IRRADIATOR.get(),
-                models().getExistingFile(modLoc("block/withering_photon_irradiator")));
+        blockWithItem(ModBlocks.COPPER_PHOTON_IRRADIATOR);
+        blockWithItem(ModBlocks.IRON_PHOTON_IRRADIATOR);
+        blockWithItem(ModBlocks.GOLD_PHOTON_IRRADIATOR);
+        blockWithItem(ModBlocks.DIAMOND_PHOTON_IRRADIATOR);
+        blockWithItem(ModBlocks.NETHERITE_PHOTON_IRRADIATOR);
+        blockWithItem(ModBlocks.WITHERING_PHOTON_IRRADIATOR);
 
 
         // ═══════════════════════════════════════════════════════
-        // PROTOSTAR - simple glowing block
+        // STARS - simple glowing block
         // ═══════════════════════════════════════════════════════
+        blockWithItem(ModBlocks.SOLARIS_RESTRAINT);
         simpleBlock(ModBlocks.PROTOSTAR.get(),
                 models().getExistingFile(modLoc("block/protostar")));
+        blockWithItem(ModBlocks.RED_DWARF);
     }
 
     /**

@@ -51,13 +51,16 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.EXCITED_IRON_BLOCK.get())
                 .add(ModBlocks.EXCITED_GOLD_BLOCK.get())
                 .add(ModBlocks.EXCITED_NETHERITE_BLOCK.get())
+                .add(ModBlocks.LUNARIS_BLOCK.get())
                 // Excited Chains
                 .add(ModBlocks.EXCITED_COPPER_CHAIN.get())
                 .add(ModBlocks.EXCITED_IRON_CHAIN.get())
                 .add(ModBlocks.EXCITED_GOLD_CHAIN.get())
                 .add(ModBlocks.EXCITED_NETHERITE_CHAIN.get())
-                // Protostar
-                .add(ModBlocks.PROTOSTAR.get());
+                // Stars
+                .add(ModBlocks.SOLARIS_RESTRAINT.get())
+                .add(ModBlocks.PROTOSTAR.get())
+                .add(ModBlocks.RED_DWARF.get());
 
         // ═══════════════════════════════════════════════════════
         // NEEDS STONE TOOL - copper and iron tier blocks
@@ -70,7 +73,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.EXCITED_COPPER_BLOCK.get())
                 .add(ModBlocks.EXCITED_COPPER_CHAIN.get())
                 .add(ModBlocks.EXCITED_IRON_BLOCK.get())
-                .add(ModBlocks.EXCITED_IRON_CHAIN.get());
+                .add(ModBlocks.EXCITED_IRON_CHAIN.get())
+                .add(ModBlocks.LUNARIS_BLOCK.get());
 
         // ═══════════════════════════════════════════════════════
         // NEEDS IRON TOOL - gold and diamond tier blocks
@@ -94,7 +98,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.NETHERITE_PHOTON_IRRADIATOR.get())
                 .add(ModBlocks.WITHERING_PHOTON_IRRADIATOR.get())
                 .add(ModBlocks.EXCITED_NETHERITE_BLOCK.get())
-                .add(ModBlocks.EXCITED_NETHERITE_CHAIN.get());
+                .add(ModBlocks.EXCITED_NETHERITE_CHAIN.get())
+                .add(ModBlocks.SOLARIS_RESTRAINT.get());
 
         // ═══════════════════════════════════════════════════════
         // WRENCH BLACKLIST - blocks that cannot be wrenched

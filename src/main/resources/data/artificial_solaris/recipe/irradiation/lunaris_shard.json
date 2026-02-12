@@ -1,0 +1,12 @@
+{
+  "type": "artificial_solaris:irradiation",
+  "ingredient": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "artificial_solaris:lunaris_shard",
+    "count": 1
+  },
+  "energy": 50000,
+  "processing_time": 3000
+}

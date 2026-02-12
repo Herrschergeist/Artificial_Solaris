@@ -6,6 +6,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.IItemHandler;
 
 import static dev.Herrschergeist.artificial_solaris.artificial_solaris.MOD_ID;
 
@@ -36,6 +37,13 @@ public class CapabilityHandler {
                     }
                     return null;
                 }
+        );
+
+        // Register item handler capability for Dragon Forge
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.DRAGON_FORGE.get(),
+                (blockEntity, side) -> blockEntity.getItemHandler()
         );
     }
 }

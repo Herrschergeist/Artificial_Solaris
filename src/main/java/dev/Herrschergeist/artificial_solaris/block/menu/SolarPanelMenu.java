@@ -46,7 +46,7 @@ public class SolarPanelMenu extends AbstractContainerMenu {
     public SolarPanelMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(containerId, playerInventory,
                 (SolarPanelBlockEntity) playerInventory.player.level().getBlockEntity(extraData.readBlockPos()),
-                new SimpleContainerData(2));
+                new SimpleContainerData(3));
     }
 
     @Override
@@ -68,6 +68,10 @@ public class SolarPanelMenu extends AbstractContainerMenu {
 
     public int getMaxEnergy() {
         return data.get(1);
+    }
+
+    public int getCurrentGeneration() {
+        return data.get(2);
     }
 
     public SolarPanelBlockEntity getBlockEntity() {

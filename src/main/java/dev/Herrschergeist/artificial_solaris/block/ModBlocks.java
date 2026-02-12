@@ -1,14 +1,10 @@
 package dev.Herrschergeist.artificial_solaris.block;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
-import dev.Herrschergeist.artificial_solaris.block.custom.DragonForgeBlock;
-import dev.Herrschergeist.artificial_solaris.block.custom.PhotonIrradiatorBlock;
-import dev.Herrschergeist.artificial_solaris.block.custom.ProtostarBlock;
-import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
+import dev.Herrschergeist.artificial_solaris.block.custom.*;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ChainBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -116,6 +112,16 @@ public class ModBlocks {
             )
     );
 
+
+    public static final DeferredBlock<Block> LUNARIS_BLOCK = registerBlockWithItem(
+            "lunaris_block",
+            () -> new Block(
+                    BlockBehaviour.Properties.of()
+                            .strength(2.0f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.AMETHYST)
+            )
+    );
 
     // ─── Solar Panel Blocks ──────────────────────────────
     public static final DeferredBlock<Block> COPPER_SOLAR_PANEL = BLOCKS.register(
@@ -291,9 +297,27 @@ public class ModBlocks {
 
 
     // ─── Star Blocks ──────────────────────────────
+    public static final DeferredBlock<Block> SOLARIS_RESTRAINT = BLOCKS.register("solaris_restraint",
+            () -> new SolarisRestraintBlock(BlockBehaviour.Properties.of()
+                    .strength(5.0f, 6.0f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+
     public static final DeferredBlock<Block> PROTOSTAR = BLOCKS.register(
             "protostar",
             () -> new ProtostarBlock(
+                    BlockBehaviour.Properties.of()
+                            .strength(1.0f)
+                            .lightLevel(state -> 10)
+                            .sound(SoundType.GLASS)
+                            .noOcclusion()
+            )
+    );
+
+    public static final DeferredBlock<Block> RED_DWARF = BLOCKS.register(
+            "red_dwarf",
+            () -> new RedDwarfBlock(
                     BlockBehaviour.Properties.of()
                             .strength(1.0f)
                             .lightLevel(state -> 10)

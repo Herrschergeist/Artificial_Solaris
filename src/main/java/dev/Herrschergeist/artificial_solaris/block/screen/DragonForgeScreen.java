@@ -128,10 +128,22 @@ public class DragonForgeScreen extends AbstractContainerScreen<DragonForgeMenu> 
     }
 
     @Override
+    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+    }
+
+
+    @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         renderTooltip(guiGraphics, mouseX, mouseY);
+
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
+        int titleX = x + (imageWidth / 2) - (font.width(title) / 2);
+        int titleY = y - 15;
+        guiGraphics.drawString(font, title, titleX, titleY, 0x404040, false);
     }
+
 
     @Override
     protected void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {

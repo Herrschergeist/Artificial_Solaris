@@ -11,24 +11,50 @@ import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public class DragonForgeRecipe implements Recipe<RecipeInput> {
 
-    private final Ingredient input;
+    // Each ingredient now has a count (how many are required)
+    public record CountedIngredient(Ingredient ingredient, int count) {
+        public static final Codec<CountedIngredient> CODEC = RecordCodecBuilder.create(instance ->
+                instance.group(
+                        Ingredient.CODEC.fieldOf("ingredient").forGetter(CountedIngredient::ingredient),
+                        Codec.INT.optionalFieldOf("count", 1).forGetter(CountedIngredient::count)
+                ).apply(instance, CountedIngredient::new)
+        );
+
+        // Check if a given stack matches this ingredient with required count
+        public boolean test(ItemStack stack) {
+            return ingredient.test(stack) && stack.getCount() >= count;
+        }
+    }
+
+    private final List<CountedIngredient> inputs; // Up to 3 input slots
     private final ItemStack output;
     private final int energyCost;
     private final int waterCost;
     private final int processingTime;
 
-    public DragonForgeRecipe(Ingredient input, ItemStack output, int energyCost, int waterCost, int processingTime) {
-        this.input = input;
+    public DragonForgeRecipe(List<CountedIngredient> inputs, ItemStack output,
+                             int energyCost, int waterCost, int processingTime) {
+        this.inputs = inputs;
         this.output = output;
         this.energyCost = energyCost;
         this.waterCost = waterCost;
         this.processingTime = processingTime;
     }
 
-    public Ingredient getInput() {
-        return input;
+    public List<CountedIngredient> getInputs() {
+        return inputs;
+    }
+
+    // Get ingredient for a specific slot (0, 1, 2)
+    public CountedIngredient getInputForSlot(int slot) {
+        if (slot < inputs.size()) {
+            return inputs.get(slot);
+        }
+        return null; // Slot not required
     }
 
     public ItemStack getOutput() {
@@ -52,7 +78,13 @@ public class DragonForgeRecipe implements Recipe<RecipeInput> {
         if (level.isClientSide()) {
             return false;
         }
-        return this.input.test(input.getItem(0));
+        // Check all required input slots
+        for (int i = 0; i < inputs.size(); i++) {
+            if (!inputs.get(i).test(input.getItem(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -84,7 +116,7 @@ public class DragonForgeRecipe implements Recipe<RecipeInput> {
 
         private static final MapCodec<DragonForgeRecipe> CODEC = RecordCodecBuilder.mapCodec(instance ->
                 instance.group(
-                        Ingredient.CODEC.fieldOf("ingredient").forGetter(recipe -> recipe.input),
+                        CountedIngredient.CODEC.listOf().fieldOf("ingredients").forGetter(recipe -> recipe.inputs),
                         ItemStack.CODEC.fieldOf("result").forGetter(recipe -> recipe.output),
                         Codec.INT.fieldOf("energy").forGetter(recipe -> recipe.energyCost),
                         Codec.INT.fieldOf("water").forGetter(recipe -> recipe.waterCost),
@@ -109,16 +141,26 @@ public class DragonForgeRecipe implements Recipe<RecipeInput> {
         }
 
         private static DragonForgeRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
-            Ingredient input = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+            int size = buffer.readInt();
+            List<CountedIngredient> inputs = new java.util.ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                Ingredient ingredient = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+                int count = buffer.readInt();
+                inputs.add(new CountedIngredient(ingredient, count));
+            }
             ItemStack output = ItemStack.STREAM_CODEC.decode(buffer);
             int energy = buffer.readInt();
             int water = buffer.readInt();
             int time = buffer.readInt();
-            return new DragonForgeRecipe(input, output, energy, water, time);
+            return new DragonForgeRecipe(inputs, output, energy, water, time);
         }
 
         private static void toNetwork(RegistryFriendlyByteBuf buffer, DragonForgeRecipe recipe) {
-            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.input);
+            buffer.writeInt(recipe.inputs.size());
+            for (CountedIngredient ci : recipe.inputs) {
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ci.ingredient());
+                buffer.writeInt(ci.count());
+            }
             ItemStack.STREAM_CODEC.encode(buffer, recipe.output);
             buffer.writeInt(recipe.energyCost);
             buffer.writeInt(recipe.waterCost);

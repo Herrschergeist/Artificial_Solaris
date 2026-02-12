@@ -62,6 +62,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.EXCITED_IRON_BLOCK.get());
         dropSelf(ModBlocks.EXCITED_GOLD_BLOCK.get());
         dropSelf(ModBlocks.EXCITED_NETHERITE_BLOCK.get());
+        dropSelf(ModBlocks.LUNARIS_BLOCK.get());
 
         // ═══════════════════════════════════════════════════════
         // EXCITED CHAINS - drop themselves
@@ -72,9 +73,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.EXCITED_NETHERITE_CHAIN.get());
 
         // ═══════════════════════════════════════════════════════
-        // PROTOSTAR - drops itself
+        // STARS - drop themselves
         // ═══════════════════════════════════════════════════════
+        dropSelf(ModBlocks.SOLARIS_RESTRAINT.get());
         dropSelf(ModBlocks.PROTOSTAR.get());
+        dropSelf(ModBlocks.RED_DWARF.get());
     }
 
     @Override

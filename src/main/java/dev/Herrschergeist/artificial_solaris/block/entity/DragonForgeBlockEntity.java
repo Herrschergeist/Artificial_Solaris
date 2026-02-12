@@ -23,18 +23,36 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider {
 
-    private final ItemStackHandler inventory = new ItemStackHandler(5) {
+    // Slot layout:
+    // 0 - Blaze Powder (fuel)
+    // 1 - Water Bucket
+    // 2 - Dragon Head
+    // 3 - Input slot LEFT  (54, 9)
+    // 4 - Input slot MID   (80, 9)
+    // 5 - Input slot RIGHT (106, 9)
+    // 6 - Output slot
+    private static final int BLAZE_POWDER_SLOT = 0;
+    private static final int BUCKET_SLOT       = 1;
+    private static final int DRAGON_HEAD_SLOT  = 2;
+    private static final int INPUT_LEFT_SLOT   = 3;
+    private static final int INPUT_MID_SLOT    = 4;
+    private static final int INPUT_RIGHT_SLOT  = 5;
+    private static final int OUTPUT_SLOT       = 6;
+
+    private final ItemStackHandler inventory = new ItemStackHandler(7) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -56,15 +74,12 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
     private DragonForgeRecipe currentRecipe = null;
     private int waterPerTick = 0;
     private int energyPerTick = 0;
-
     private boolean isCrafting = false;
 
-    // Fluid handler that only accepts water
+    // Fluid handler - only accepts water
     private final IFluidHandler fluidHandler = new IFluidHandler() {
         @Override
-        public int getTanks() {
-            return 1;
-        }
+        public int getTanks() { return 1; }
 
         @Override
         public @NotNull FluidStack getFluidInTank(int tank) {
@@ -72,9 +87,7 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
         }
 
         @Override
-        public int getTankCapacity(int tank) {
-            return MAX_WATER;
-        }
+        public int getTankCapacity(int tank) { return MAX_WATER; }
 
         @Override
         public boolean isFluidValid(int tank, @NotNull FluidStack stack) {
@@ -83,31 +96,90 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if (resource.getFluid() != Fluids.WATER) {
-                return 0; // Only accept water
-            }
-
+            if (resource.getFluid() != Fluids.WATER) return 0;
             int space = MAX_WATER - waterStored;
             int toFill = Math.min(space, resource.getAmount());
-
             if (action.execute() && toFill > 0) {
                 waterStored += toFill;
                 setChanged();
             }
-
             return toFill;
         }
 
         @Override
         public @NotNull FluidStack drain(FluidStack resource, FluidAction action) {
-            return FluidStack.EMPTY; // Don't allow draining
+            return FluidStack.EMPTY;
         }
 
         @Override
         public @NotNull FluidStack drain(int maxDrain, FluidAction action) {
-            return FluidStack.EMPTY; // Don't allow draining
+            return FluidStack.EMPTY;
         }
     };
+
+    // Item handler exposed to pipes/hoppers with slot restrictions
+    private final IItemHandler itemHandler = new IItemHandler() {
+        @Override
+        public int getSlots() {
+            return inventory.getSlots();
+        }
+
+        @Override
+        public @NotNull ItemStack getStackInSlot(int slot) {
+            return inventory.getStackInSlot(slot);
+        }
+
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            // Check slot validity - each slot only accepts specific items
+            boolean allowed = switch (slot) {
+                case BLAZE_POWDER_SLOT -> stack.is(Items.BLAZE_POWDER);
+                case BUCKET_SLOT -> stack.is(Items.WATER_BUCKET);
+                case DRAGON_HEAD_SLOT -> stack.is(Items.DRAGON_HEAD);
+                case OUTPUT_SLOT -> false; // No insertion into output
+                default -> // Input slots: reject blaze powder, dragon head, bucket
+                        !stack.is(Items.BLAZE_POWDER) &&
+                                !stack.is(Items.DRAGON_HEAD) &&
+                                !stack.is(Items.WATER_BUCKET);
+            };
+
+            if (!allowed) return stack; // Reject item
+            return inventory.insertItem(slot, stack, simulate);
+        }
+
+        @Override
+        public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) {
+            // Only allow extraction from output slot
+            if (slot == OUTPUT_SLOT) {
+                return inventory.extractItem(slot, amount, simulate);
+            }
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            // Dragon head slot - max 1
+            if (slot == DRAGON_HEAD_SLOT) return 1;
+            return inventory.getSlotLimit(slot);
+        }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            return switch (slot) {
+                case BLAZE_POWDER_SLOT -> stack.is(Items.BLAZE_POWDER);
+                case BUCKET_SLOT -> stack.is(Items.WATER_BUCKET);
+                case DRAGON_HEAD_SLOT -> stack.is(Items.DRAGON_HEAD);
+                case OUTPUT_SLOT -> false;
+                default -> !stack.is(Items.BLAZE_POWDER) &&
+                        !stack.is(Items.DRAGON_HEAD) &&
+                        !stack.is(Items.WATER_BUCKET);
+            };
+        }
+    };
+
+    public IItemHandler getItemHandler() {
+        return itemHandler;
+    }
 
     private final ContainerData data = new ContainerData() {
         @Override
@@ -124,57 +196,46 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
         }
 
         @Override
-        public void set(int index, int value) {
-            // Client sync
-        }
+        public void set(int index, int value) {}
 
         @Override
-        public int getCount() {
-            return 6;
-        }
+        public int getCount() { return 6; }
     };
 
     public DragonForgeBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.DRAGON_FORGE.get(), pos, state);
     }
 
-    // Expose capabilities
+    // Only allow fluid from the right side (water tank side)
     public IFluidHandler getFluidHandler(Direction side) {
-        // Only allow fluid input from the water tank side (right side relative to facing)
         Direction facing = getBlockState().getValue(DragonForgeBlock.FACING);
-        Direction tankSide = facing.getClockWise(); // Right side
-
-        if (side == tankSide) {
-            return fluidHandler;
-        }
+        Direction tankSide = facing.getClockWise();
+        if (side == tankSide) return fluidHandler;
         return null;
     }
 
+    // Allow energy from all sides except top and water tank side
     public IEnergyStorage getEnergyStorage(Direction side) {
-        // Allow energy from all sides except water tank side and top
         Direction facing = getBlockState().getValue(DragonForgeBlock.FACING);
         Direction tankSide = facing.getClockWise();
-
-        if (side != Direction.UP && side != tankSide) {
-            return energyStorage;
-        }
+        if (side != Direction.UP && side != tankSide) return energyStorage;
         return null;
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, DragonForgeBlockEntity be) {
         if (level.isClientSide) return;
 
+        // Bucket cooldown
         if (be.bucketProcessCooldown > 0) {
             be.bucketProcessCooldown--;
         }
-
         if (be.bucketProcessCooldown == 0) {
             be.processWaterBucket();
         }
 
         if (be.canProcess()) {
             if (!be.isCrafting) {
-                be.isCrafting = true;  // Начинаем крафт
+                be.isCrafting = true;
                 be.progress = 0;
             }
 
@@ -183,7 +244,7 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
 
             if (be.currentRecipe != null && be.progress >= be.currentRecipe.getProcessingTime()) {
                 be.progress = 0;
-                be.isCrafting = false;  // Закончили крафт
+                be.isCrafting = false;
             }
         } else {
             be.progress = 0;
@@ -194,38 +255,44 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
         be.setChanged();
     }
 
-        private void processWaterBucket() {
-            ItemStack bucketStack = inventory.getStackInSlot(1);
-
-            if (bucketStack.is(Items.WATER_BUCKET) && waterStored + 1000 <= MAX_WATER) {
-                waterStored += 1000;
-                bucketStack.shrink(1);
-
-                ItemStack emptyBucket = new ItemStack(Items.BUCKET);
-                if (bucketStack.isEmpty()) {
-                    inventory.setStackInSlot(1, emptyBucket);
-                }
-
-                bucketProcessCooldown = 20;
-                setChanged();
+    private void processWaterBucket() {
+        ItemStack bucketStack = inventory.getStackInSlot(1);
+        if (bucketStack.is(Items.WATER_BUCKET) && waterStored + 1000 <= MAX_WATER) {
+            waterStored += 1000;
+            bucketStack.shrink(1);
+            if (bucketStack.isEmpty()) {
+                inventory.setStackInSlot(1, new ItemStack(Items.BUCKET));
             }
+            bucketProcessCooldown = 20;
+            setChanged();
         }
+    }
 
     private boolean canProcess() {
         ItemStack blazePowder = inventory.getStackInSlot(0);
         ItemStack dragonHead = inventory.getStackInSlot(2);
-        ItemStack input = inventory.getStackInSlot(3);
-        ItemStack output = inventory.getStackInSlot(4);
 
-        if (blazePowder.isEmpty() || dragonHead.isEmpty() || input.isEmpty()) {
+        // Blaze powder and dragon head are always required
+        if (blazePowder.isEmpty() || dragonHead.isEmpty()) {
             currentRecipe = null;
             isCrafting = false;
             return false;
         }
 
-        // Find recipe only if not already crafting
-        if (!isCrafting && (currentRecipe == null || !currentRecipe.getInput().test(input))) {
-            currentRecipe = findRecipe(input);
+        // At least one input slot must have an item
+        boolean anyInput = !inventory.getStackInSlot(3).isEmpty() ||
+                !inventory.getStackInSlot(4).isEmpty() ||
+                !inventory.getStackInSlot(5).isEmpty();
+        if (!anyInput) {
+            currentRecipe = null;
+            isCrafting = false;
+            return false;
+        }
+
+        // Always check if current inputs still match, even while crafting
+        if (currentRecipe == null || !matchesCurrentInputs()) {
+            isCrafting = false;
+            currentRecipe = findRecipe();
             if (currentRecipe != null) {
                 waterPerTick = currentRecipe.getWaterCost() / currentRecipe.getProcessingTime();
                 energyPerTick = currentRecipe.getEnergyCost() / currentRecipe.getProcessingTime();
@@ -243,25 +310,55 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
         }
 
         // Check output space
+        ItemStack output = inventory.getStackInSlot(6);
         ItemStack result = currentRecipe.getOutput();
-        if (output.isEmpty()) {
-            return true;
-        }
+        if (output.isEmpty()) return true;
 
         return output.getItem() == result.getItem() &&
                 output.getCount() + result.getCount() <= output.getMaxStackSize();
     }
 
-    private DragonForgeRecipe findRecipe(ItemStack input) {
+    // Check if current inputs still satisfy the active recipe (any order)
+    private boolean matchesCurrentInputs() {
+        if (currentRecipe == null) return false;
+        return canSatisfyRecipe(currentRecipe);
+    }
+
+    // Try to match recipe ingredients against input slots in any order
+    private boolean canSatisfyRecipe(DragonForgeRecipe recipe) {
+        // Collect all non-empty input stacks
+        List<ItemStack> available = new java.util.ArrayList<>();
+        for (int i = 3; i <= 5; i++) {
+            ItemStack stack = inventory.getStackInSlot(i);
+            if (!stack.isEmpty()) available.add(stack);
+        }
+
+        // Each required ingredient must be satisfied by a unique slot
+        boolean[] used = new boolean[available.size()];
+
+        for (DragonForgeRecipe.CountedIngredient ci : recipe.getInputs()) {
+            boolean found = false;
+            for (int j = 0; j < available.size(); j++) {
+                if (!used[j] && ci.ingredient().test(available.get(j))
+                        && available.get(j).getCount() >= ci.count()) {
+                    used[j] = true;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) return false;
+        }
+        return true;
+    }
+
+    // Find recipe that matches inputs in any order
+    private DragonForgeRecipe findRecipe() {
         if (level == null) return null;
 
         RecipeManager recipeManager = level.getRecipeManager();
-
         for (RecipeHolder<?> holder : recipeManager.getRecipes()) {
             if (holder.value() instanceof DragonForgeRecipe recipe) {
-                if (recipe.getInput().test(input)) {
-                    return recipe;
-                }
+                if (canSatisfyRecipe(recipe)) return recipe;
             }
         }
         return null;
@@ -270,28 +367,36 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
     private void craftItem() {
         if (currentRecipe == null) return;
 
-        // Consume resources PER TICK (except blaze powder)
+        // Consume water and energy every tick
         waterStored -= waterPerTick;
         energyStorage.extractEnergy(energyPerTick, false);
 
-        // On completion - consume blaze powder ONCE
+        // On completion
         if (progress >= currentRecipe.getProcessingTime() - 1) {
-            // Consume blaze powder only at the end
+            // Consume blaze powder once
             inventory.getStackInSlot(0).shrink(1);
 
-            // Process input -> output
-            ItemStack input = inventory.getStackInSlot(3);
-            ItemStack output = inventory.getStackInSlot(4);
-            ItemStack result = currentRecipe.getOutput().copy();
+            // Consume input items - match by ingredient, not by slot position
+            for (DragonForgeRecipe.CountedIngredient ci : currentRecipe.getInputs()) {
+                for (int i = 3; i <= 5; i++) {
+                    ItemStack stack = inventory.getStackInSlot(i);
+                    if (ci.ingredient().test(stack) && stack.getCount() >= ci.count()) {
+                        stack.shrink(ci.count());
+                        break; // Move to next ingredient
+                    }
+                }
+            }
 
+            // Add result to output slot
+            ItemStack output = inventory.getStackInSlot(6);
+            ItemStack result = currentRecipe.getOutput().copy();
             if (output.isEmpty()) {
-                inventory.setStackInSlot(4, result);
+                inventory.setStackInSlot(6, result);
             } else {
                 output.grow(result.getCount());
             }
 
-            input.shrink(1);
-            currentRecipe = null; // Reset recipe
+            currentRecipe = null;
         }
     }
 
@@ -299,7 +404,6 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
         if (level != null && !level.isClientSide) {
             ItemStack head = inventory.getStackInSlot(2);
             boolean hasHead = !head.isEmpty();
-
             BlockState currentState = getBlockState();
             if (currentState.getValue(DragonForgeBlock.HAS_HEAD) != hasHead) {
                 level.setBlock(worldPosition, currentState.setValue(DragonForgeBlock.HAS_HEAD, hasHead), 3);
@@ -307,24 +411,17 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
         }
     }
 
-    public ItemStackHandler getInventory() {
-        return inventory;
-    }
-
-    public int getWaterStored() {
-        return waterStored;
-    }
-
-    public int getMaxWater() {
-        return MAX_WATER;
-    }
+    public ItemStackHandler getInventory() { return inventory; }
+    public int getWaterStored() { return waterStored; }
+    public int getMaxWater() { return MAX_WATER; }
 
     public void drops() {
         if (level != null) {
             for (int i = 0; i < inventory.getSlots(); i++) {
                 ItemStack stack = inventory.getStackInSlot(i);
                 if (!stack.isEmpty()) {
-                    Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), stack);
+                    Containers.dropItemStack(level, worldPosition.getX(),
+                            worldPosition.getY(), worldPosition.getZ(), stack);
                 }
             }
         }

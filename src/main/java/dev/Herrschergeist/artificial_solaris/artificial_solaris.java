@@ -2,10 +2,12 @@ package dev.Herrschergeist.artificial_solaris;
 
 import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
 import dev.Herrschergeist.artificial_solaris.block.screen.*;
+import dev.Herrschergeist.artificial_solaris.event.LunarisReaperHeadDropEvent;
 import dev.Herrschergeist.artificial_solaris.item.ModCreativeModeTabs;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import dev.Herrschergeist.artificial_solaris.recipe.ModRecipes;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
+import dev.Herrschergeist.artificial_solaris.registry.ModEffects;
 import dev.Herrschergeist.artificial_solaris.registry.ModMenuTypes;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -17,6 +19,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
@@ -32,6 +35,7 @@ public class artificial_solaris {
 
     public artificial_solaris(IEventBus modEventBus) {
 
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
@@ -39,7 +43,8 @@ public class artificial_solaris {
         ModMenuTypes.MENU_TYPES.register(modEventBus);
         ModRecipes.SERIALIZERS.register(modEventBus);
         ModRecipes.TYPES.register(modEventBus);
-        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
+        ModEffects.MOB_EFFECTS.register(modEventBus);
+        NeoForge.EVENT_BUS.register(new LunarisReaperHeadDropEvent());
 
         modEventBus.addListener(this::registerCapabilities);
     }
@@ -60,6 +65,12 @@ public class artificial_solaris {
         event.registerBlockEntity(
                 Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.PHOTON_IRRADIATOR.get(),
+                (blockEntity, direction) -> blockEntity.getEnergyStorage()
+        );
+        // Solaris Restraint: outputs energy from all sides
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.SOLARIS_RESTRAINT.get(),
                 (blockEntity, direction) -> blockEntity.getEnergyStorage()
         );
     }

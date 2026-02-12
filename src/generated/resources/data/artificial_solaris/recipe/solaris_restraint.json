@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": {
+      "item": "artificial_solaris:excited_netherite_ingot"
+    },
+    "R": {
+      "item": "artificial_solaris:resurrected_logic"
+    },
+    "S": {
+      "item": "artificial_solaris:stellar_cage_tier2"
+    }
+  },
+  "pattern": [
+    "NSN",
+    "SRS",
+    "NSN"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:solaris_restraint"
+  }
+}

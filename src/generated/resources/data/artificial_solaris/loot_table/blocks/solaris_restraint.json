@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "artificial_solaris:solaris_restraint"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "artificial_solaris:blocks/solaris_restraint"
+}

@@ -3,10 +3,10 @@
   "category": "misc",
   "key": {
     "D": {
-      "item": "minecraft:diamond"
+      "item": "artificial_solaris:lunaris_shard"
     },
     "N": {
-      "item": "minecraft:netherite_ingot"
+      "item": "artificial_solaris:excited_netherite_chain"
     },
     "T": {
       "item": "artificial_solaris:stellar_cage_tier1"

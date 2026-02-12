@@ -3,7 +3,6 @@ package dev.Herrschergeist.artificial_solaris.block.entity;
 import dev.Herrschergeist.artificial_solaris.block.custom.SolarPanelBlock;
 import dev.Herrschergeist.artificial_solaris.block.menu.SolarPanelMenu;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -20,14 +19,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.EnergyStorage;
 import net.neoforged.neoforge.energy.IEnergyStorage;
-
 import org.jetbrains.annotations.NotNull;
 
 public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
+
     private final CustomEnergyStorage energyStorage;
     private int tickCounter = 0;
     private boolean artificialSunlight = false;
     private int artificialSunlightTimer = 0;
+    private boolean hasMultiblockBoost = false;
+    private int currentGeneration = 0;
 
     private final ContainerData dataAccess = new ContainerData() {
         @Override
@@ -35,31 +36,31 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
             return switch (index) {
                 case 0 -> energyStorage.getEnergyStored();
                 case 1 -> energyStorage.getMaxEnergyStored();
+                case 2 -> currentGeneration;
                 default -> 0;
             };
         }
 
         @Override
         public void set(int index, int value) {
-            // Client gets the Data from a server, nothing to install
+            if (index == 2) {
+                currentGeneration = value;
+            }
         }
 
         @Override
         public int getCount() {
-            return 2; // 2 counts: energy and max energy
+            return 3;
         }
     };
 
     public SolarPanelBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.SOLAR_PANEL.get(), pos, state);
-
         int capacity = 100000;
         int maxTransfer = 100000000;
-
         if (state.getBlock() instanceof SolarPanelBlock solarBlock) {
             capacity = solarBlock.getCapacity();
         }
-
         this.energyStorage = new CustomEnergyStorage(capacity, 0, maxTransfer);
     }
 
@@ -68,9 +69,12 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
         this.artificialSunlightTimer = 40;
     }
 
+    public void setMultiblockBoost(boolean boost) {
+        this.hasMultiblockBoost = boost;
+    }
+
     public static void tick(Level level, BlockPos pos, BlockState state, SolarPanelBlockEntity blockEntity) {
         if (level.isClientSide) return;
-
         blockEntity.tickCounter++;
 
         // Energy Generation
@@ -78,7 +82,12 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
             int energyToGenerate = blockEntity.getEnergyGenerationRate(state);
             if (energyToGenerate > 0) {
                 blockEntity.energyStorage.addEnergy(energyToGenerate);
+                blockEntity.currentGeneration = energyToGenerate;
+            } else {
+                blockEntity.currentGeneration = 0;
             }
+        } else {
+            blockEntity.currentGeneration = 0;
         }
 
         // Giving Energy down every 20 ticks
@@ -98,6 +107,7 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
             artificialSunlightTimer--;
         } else {
             artificialSunlight = false;
+            hasMultiblockBoost = false;
         }
 
         // Check artificial sunlight first
@@ -114,7 +124,13 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
 
     private int getEnergyGenerationRate(BlockState state) {
         if (state.getBlock() instanceof SolarPanelBlock solarBlock) {
-            return solarBlock.getEnergyPerTick();
+            int baseEnergy = solarBlock.getEnergyPerTick();
+
+            if (hasMultiblockBoost) {
+                baseEnergy = (int) (baseEnergy * 1.2f);
+            }
+
+            return baseEnergy;
         }
         return 0;
     }
@@ -189,4 +205,3 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 }
-

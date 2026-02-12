@@ -17,10 +17,13 @@
     "artificial_solaris:excited_iron_block",
     "artificial_solaris:excited_gold_block",
     "artificial_solaris:excited_netherite_block",
+    "artificial_solaris:lunaris_block",
     "artificial_solaris:excited_copper_chain",
     "artificial_solaris:excited_iron_chain",
     "artificial_solaris:excited_gold_chain",
     "artificial_solaris:excited_netherite_chain",
-    "artificial_solaris:protostar"
+    "artificial_solaris:solaris_restraint",
+    "artificial_solaris:protostar",
+    "artificial_solaris:red_dwarf"
   ]
 }

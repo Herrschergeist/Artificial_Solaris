@@ -2,9 +2,7 @@ package dev.Herrschergeist.artificial_solaris.registry;
 
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
 import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
-import dev.Herrschergeist.artificial_solaris.block.entity.DragonForgeBlockEntity;
-import dev.Herrschergeist.artificial_solaris.block.entity.PhotonIrradiatorBlockEntity;
-import dev.Herrschergeist.artificial_solaris.block.entity.SolarPanelBlockEntity;
+import dev.Herrschergeist.artificial_solaris.block.entity.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -46,4 +44,19 @@ public class ModBlockEntities {
                             ModBlocks.WITHERING_PHOTON_IRRADIATOR.get()
                     ).build(null)
             );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<RedDwarfBlockEntity>> RED_DWARF =
+            BLOCK_ENTITIES.register("red_dwarf", () ->
+                    BlockEntityType.Builder.of(
+                            RedDwarfBlockEntity::new,
+                            ModBlocks.RED_DWARF.get() // Reference to your registered block
+                    ).build(null)
+            );
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SolarisRestraintBlockEntity>> SOLARIS_RESTRAINT =
+            BLOCK_ENTITIES.register("solaris_restraint", () ->
+                    BlockEntityType.Builder.of(SolarisRestraintBlockEntity::new,
+                                    ModBlocks.SOLARIS_RESTRAINT.get())
+                            .build(null));
+
 }

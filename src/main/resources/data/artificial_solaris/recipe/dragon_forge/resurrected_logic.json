@@ -1,0 +1,12 @@
+{
+  "type": "artificial_solaris:dragon_forge",
+  "ingredients": [
+    { "ingredient": { "item": "minecraft:zombie_head" }, "count": 1 },
+    { "ingredient": { "item": "artificial_solaris:lunaris_shard" }, "count": 4 },
+    { "ingredient": { "item": "artificial_solaris:excited_netherite_ingot" }, "count": 4 }
+  ],
+  "result": { "id": "artificial_solaris:resurrected_logic", "count": 1 },
+  "energy": 200000,
+  "water": 10000,
+  "time": 200
+}

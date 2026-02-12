@@ -1,8 +1,11 @@
 package dev.Herrschergeist.artificial_solaris.generated;
 
+import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -25,9 +28,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // Add item tags here if needed in the future
         // Example:
         // tag(ItemTags.YOUR_TAG)
         //     .add(ModItems.YOUR_ITEM.get());
+        tag(ItemTags.create(ResourceLocation.withDefaultNamespace("enchantable/sword")))
+                .add(ModItems.LUNARIS_REAPER.get());
     }
 }

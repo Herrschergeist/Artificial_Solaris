@@ -145,14 +145,23 @@ public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu> {
         guiGraphics.drawString(this.font, energyText, textX + 1, textY + 1, 0xFF000000, false);
         guiGraphics.drawString(this.font, energyText, textX, textY, 0xFFFFFFFF, false);
 
-        // Energy Generation under the Bar
-        SolarPanelBlock block = (SolarPanelBlock) menu.getBlockEntity().getBlockState().getBlock();
-        String generation = "⚡ +" + formatEnergy(block.getEnergyPerTick()) + " FE/t";
+// Energy Generation under the Bar - DYNAMIC
+        int currentGen = menu.getCurrentGeneration();
+        String generation;
+        int genColor;
+
+        if (currentGen > 0) {
+            generation = "⚡ +" + formatEnergy(currentGen) + " FE/t";
+            genColor = 0xFF55AA55; // Зеленый если генерирует
+        } else {
+            generation = "⚡ +0 FE/t";
+            genColor = 0xFF888888; // Серый если не генерирует
+        }
+
         int genWidth = this.font.width(generation);
         int genX = barX + (barWidth - genWidth) / 2;
         int genY = barY + barHeight + 3;
-
-        guiGraphics.drawString(this.font, generation, genX, genY, 0xFF55AA55, false);
+        guiGraphics.drawString(this.font, generation, genX, genY, genColor, false);
     }
 
     private int getGradientColor(float position, float fillPercentage) {

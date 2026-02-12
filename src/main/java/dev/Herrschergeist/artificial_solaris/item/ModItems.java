@@ -98,6 +98,16 @@ public class ModItems {
 
 
     // ─── Star Items ──────────────────────────────
+    public static final DeferredItem<Item> RESURRECTED_LOGIC =
+            ITEMS.register("resurrected_logic",
+                    () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<BlockItem> SOLARIS_RESTRAINT =
+            ITEMS.register("solaris_restraint",
+                    () -> new BlockItem(ModBlocks.SOLARIS_RESTRAINT.get(),
+                            new Item.Properties()
+                                    .rarity(Rarity.RARE)));
+
     public static final DeferredItem<BlockItem> PROTOSTAR =
             ITEMS.register("protostar",
                     () -> new BlockItem(ModBlocks.PROTOSTAR.get(),
@@ -122,6 +132,30 @@ public class ModItems {
                         }
                     });
 
+    public static final DeferredItem<Item> RED_DWARF =
+            ITEMS.register("red_dwarf",
+                    () -> new BlockItem(ModBlocks.RED_DWARF.get(),
+                            new Item.Properties()
+                                    .rarity(Rarity.EPIC)){
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                            if (Screen.hasShiftDown()) {
+                                tooltipComponents.add(Component.translatable("tooltip.artificial_solaris.red_dwarf"));
+                            } else {
+                                tooltipComponents.add(Component.translatable("tooltip.artificial_solaris.shift_down"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                            }
+                            super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                            if (Screen.hasAltDown()) {
+                                tooltipComponents.add(Component.translatable("tooltip.artificial_solaris.red_dwarf_description"));
+                            } else {
+                                tooltipComponents.add(Component.translatable("tooltip.artificial_solaris.alt_down"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                            }
+                            super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                    });
+
     /**
      * Stellar Cage Tier 1 - Cannot capture boss mobs
      */
@@ -138,11 +172,25 @@ public class ModItems {
             () -> new StellarCageItem(2, new Item.Properties())
     );
 
-    // ─── Wrench Item ──────────────────────────────
+    // ─── Tool Item ──────────────────────────────
     public static final DeferredItem<Item> WRENCH =
             ITEMS.register("wrench",
                     () -> new WrenchItem(new Item.Properties().stacksTo(1)));
 
+    public static final DeferredItem<SwordItem> LUNARIS_REAPER =
+            ITEMS.register("lunaris_reaper",
+                    () -> new SwordItem(Tiers.NETHERITE,
+                            new Item.Properties()
+                                    .attributes(SwordItem.createAttributes(Tiers.NETHERITE, 3, -2.4f))
+                                    .rarity(Rarity.RARE)
+                    ) {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context,
+                                                    List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                            super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                            tooltipComponents.add(Component.translatable("tooltip.artificial_solaris.lunaris_reaper.head_drop"));
+                        }
+                    });
 
     // ─── Resource Items ──────────────────────────────
     public static final DeferredItem<Item> EXCITED_COPPER_INGOT =
@@ -175,6 +223,10 @@ public class ModItems {
 
     public static final DeferredItem<Item> EXCITED_NETHERITE_NUGGET =
             ITEMS.register("excited_netherite_nugget",
+                    () -> new Item(new Item.Properties()));
+
+    public static final DeferredItem<Item> LUNARIS_SHARD =
+            ITEMS.register("lunaris_shard",
                     () -> new Item(new Item.Properties()));
 
     public static final DeferredItem<Item> SOLARIS_CAUGHT_GEM =
