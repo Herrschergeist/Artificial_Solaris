@@ -3,6 +3,7 @@ package dev.Herrschergeist.artificial_solaris;
 import dev.Herrschergeist.artificial_solaris.block.ModBlocks;
 import dev.Herrschergeist.artificial_solaris.block.screen.*;
 import dev.Herrschergeist.artificial_solaris.event.LunarisReaperHeadDropEvent;
+import dev.Herrschergeist.artificial_solaris.event.WrenchEventHandler;
 import dev.Herrschergeist.artificial_solaris.item.ModCreativeModeTabs;
 import dev.Herrschergeist.artificial_solaris.item.ModItems;
 import dev.Herrschergeist.artificial_solaris.recipe.ModRecipes;
@@ -45,6 +46,7 @@ public class artificial_solaris {
         ModRecipes.TYPES.register(modEventBus);
         ModEffects.MOB_EFFECTS.register(modEventBus);
         NeoForge.EVENT_BUS.register(new LunarisReaperHeadDropEvent());
+        NeoForge.EVENT_BUS.register(new WrenchEventHandler());
 
         modEventBus.addListener(this::registerCapabilities);
     }

@@ -101,10 +101,5 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.EXCITED_NETHERITE_CHAIN.get())
                 .add(ModBlocks.SOLARIS_RESTRAINT.get());
 
-        // ═══════════════════════════════════════════════════════
-        // WRENCH BLACKLIST - blocks that cannot be wrenched
-        // ═══════════════════════════════════════════════════════
-        tag(ModTags.Blocks.WRENCH_BLACKLIST)
-                .add(ModBlocks.DRAGON_FORGE.get());
     }
 }

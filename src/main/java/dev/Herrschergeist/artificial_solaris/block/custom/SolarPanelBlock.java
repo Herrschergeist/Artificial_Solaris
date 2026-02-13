@@ -1,7 +1,9 @@
 package dev.Herrschergeist.artificial_solaris.block.custom;
 
+import dev.Herrschergeist.artificial_solaris.api.IWrenchable;
 import dev.Herrschergeist.artificial_solaris.block.entity.SolarPanelBlockEntity;
 import dev.Herrschergeist.artificial_solaris.registry.ModBlockEntities;
+import dev.Herrschergeist.artificial_solaris.util.WrenchUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +17,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class SolarPanelBlock extends Block implements EntityBlock {
+public class SolarPanelBlock extends Block implements EntityBlock, IWrenchable {
+
     private final int energyPerTick;
     private final int capacity;
 
@@ -31,6 +34,11 @@ public class SolarPanelBlock extends Block implements EntityBlock {
 
     public int getCapacity() {
         return capacity;
+    }
+
+    @Override
+    public boolean onWrench(BlockState state, Level level, BlockPos pos, Player player) {
+        return WrenchUtil.pickUpBlock(level, pos, state, player);
     }
 
     @Override
@@ -54,7 +62,6 @@ public class SolarPanelBlock extends Block implements EntityBlock {
         if (level.isClientSide) {
             return null;
         }
-
         if (type == ModBlockEntities.SOLAR_PANEL.get()) {
             return (level1, pos, state1, blockEntity) -> {
                 if (blockEntity instanceof SolarPanelBlockEntity solarPanel) {
@@ -62,7 +69,6 @@ public class SolarPanelBlock extends Block implements EntityBlock {
                 }
             };
         }
-
         return null;
     }
 }

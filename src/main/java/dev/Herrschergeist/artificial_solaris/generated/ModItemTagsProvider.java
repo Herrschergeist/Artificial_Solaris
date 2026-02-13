@@ -33,5 +33,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         //     .add(ModItems.YOUR_ITEM.get());
         tag(ItemTags.create(ResourceLocation.withDefaultNamespace("enchantable/sword")))
                 .add(ModItems.LUNARIS_REAPER.get());
+        tag(ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "tools/wrench")))
+                .add(ModItems.WRENCH.get());
     }
 }
