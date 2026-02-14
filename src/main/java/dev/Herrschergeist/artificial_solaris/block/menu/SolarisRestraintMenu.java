@@ -1,6 +1,6 @@
 package dev.Herrschergeist.artificial_solaris.block.menu;
 
-import dev.Herrschergeist.artificial_solaris.block.entity.SolarPanelBlockEntity;
+import dev.Herrschergeist.artificial_solaris.block.entity.SolarisRestraintBlockEntity;
 import dev.Herrschergeist.artificial_solaris.registry.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,15 +11,15 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
-public class SolarPanelMenu extends AbstractContainerMenu {
+public class SolarisRestraintMenu extends AbstractContainerMenu {
 
-    private final SolarPanelBlockEntity blockEntity;
+    private final SolarisRestraintBlockEntity blockEntity;
     private final ContainerData data;
 
     // Server constructor
-    public SolarPanelMenu(int containerId, Inventory playerInventory,
-                          SolarPanelBlockEntity blockEntity, ContainerData data) {
-        super(ModMenuTypes.SOLAR_PANEL_MENU.get(), containerId);
+    public SolarisRestraintMenu(int containerId, Inventory playerInventory,
+                                SolarisRestraintBlockEntity blockEntity, ContainerData data) {
+        super(ModMenuTypes.SOLARIS_RESTRAINT_MENU.get(), containerId);
         this.blockEntity = blockEntity;
         this.data = data;
 
@@ -42,8 +42,18 @@ public class SolarPanelMenu extends AbstractContainerMenu {
     }
 
     // Client constructor
-    public SolarPanelMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
+    public SolarisRestraintMenu(int containerId, Inventory playerInventory, FriendlyByteBuf extraData) {
         this(containerId, playerInventory, null, new SimpleContainerData(3));
+    }
+
+    public int getEnergy()           { return data.get(0); }
+    public int getMaxEnergy()        { return data.get(1); }
+    public int getCurrentGeneration(){ return data.get(2); }
+
+    public int getEnergyPercent() {
+        int max = getMaxEnergy();
+        if (max == 0) return 0;
+        return (int) ((getEnergy() * 100L) / max);
     }
 
     @Override
@@ -60,16 +70,4 @@ public class SolarPanelMenu extends AbstractContainerMenu {
                 blockEntity.getBlockPos().getY() + 0.5,
                 blockEntity.getBlockPos().getZ() + 0.5) <= 64;
     }
-
-    public int getEnergy()           { return data.get(0); }
-    public int getMaxEnergy()        { return data.get(1); }
-    public int getCurrentGeneration(){ return data.get(2); }
-
-    public int getEnergyPercent() {
-        int max = getMaxEnergy();
-        if (max == 0) return 0;
-        return (int) ((getEnergy() * 100L) / max);
-    }
-
-    public SolarPanelBlockEntity getBlockEntity() { return blockEntity; }
 }

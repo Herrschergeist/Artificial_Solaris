@@ -79,6 +79,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         // STARS - simple glowing block
         // ═══════════════════════════════════════════════════════
         blockWithItem(ModBlocks.SOLARIS_RESTRAINT);
+        blockWithItem(ModBlocks.HEAT_EATER);
         simpleBlock(ModBlocks.PROTOSTAR.get(),
                 models().getExistingFile(modLoc("block/protostar")));
         blockWithItem(ModBlocks.RED_DWARF);

@@ -399,11 +399,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("NSN")
                 .pattern("SRS")
                 .pattern("NSN")
-                .define('N', ModItems.EXCITED_NETHERITE_INGOT)
-                .define('S', ModItems.STELLAR_CAGE_TIER2)
-                .define('R', ModItems.RESURRECTED_LOGIC)
-                .unlockedBy("has_tier2_cage", has(ModItems.STELLAR_CAGE_TIER2))
-                .unlockedBy("has_resurrected_logic", has(ModItems.RESURRECTED_LOGIC))
+                .define('N', ModItems.EXCITED_NETHERITE_INGOT.get())
+                .define('S', ModItems.STELLAR_CAGE_TIER2.get())
+                .define('R', ModItems.RESURRECTED_LOGIC.get())
+                .unlockedBy("has_tier2_cage", has(ModItems.STELLAR_CAGE_TIER2.get()))
+                .unlockedBy("has_resurrected_logic", has(ModItems.RESURRECTED_LOGIC.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HEAT_EATER.get().asItem())
+                .pattern("BSB")
+                .pattern("SGS")
+                .pattern("BSB")
+                .define('B', ModBlocks.EXCITED_GOLD_BLOCK.get())
+                .define('S', ModItems.STELLAR_CAGE_TIER2.get())
+                .define('G', ModItems.GREED_MATRIX.get())
+                .unlockedBy("has_tier2_cage", has(ModItems.STELLAR_CAGE_TIER2.get()))
+                .unlockedBy("has_greed_matrix", has(ModItems.GREED_MATRIX.get()))
                 .save(recipeOutput);
 
     }

@@ -76,6 +76,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         // STARS - drop themselves
         // ═══════════════════════════════════════════════════════
         dropSelf(ModBlocks.SOLARIS_RESTRAINT.get());
+        dropSelf(ModBlocks.HEAT_EATER.get());
         dropSelf(ModBlocks.PROTOSTAR.get());
         dropSelf(ModBlocks.RED_DWARF.get());
     }

@@ -75,6 +75,11 @@ public class artificial_solaris {
                 ModBlockEntities.SOLARIS_RESTRAINT.get(),
                 (blockEntity, direction) -> blockEntity.getEnergyStorage()
         );
+        event.registerBlockEntity(
+                Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.HEAT_EATER_BE.get(),
+                (be, side) -> be.getEnergyStorage()
+        );
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -123,6 +128,8 @@ public class artificial_solaris {
                 event.register(ModMenuTypes.DIAMOND_PHOTON_IRRADIATOR.get(), DiamondPhotonIrradiatorScreen::new);
                 event.register(ModMenuTypes.NETHERITE_PHOTON_IRRADIATOR.get(), NetheritePhotonIrradiatorScreen::new);
                 event.register(ModMenuTypes.WITHERING_PHOTON_IRRADIATOR.get(), WitheringPhotonIrradiatorScreen::new);
+                event.register(ModMenuTypes.HEAT_EATER_MENU.get(), HeatEaterScreen::new);
+                event.register(ModMenuTypes.SOLARIS_RESTRAINT_MENU.get(), SolarisRestraintScreen::new);
             }
         }
     }

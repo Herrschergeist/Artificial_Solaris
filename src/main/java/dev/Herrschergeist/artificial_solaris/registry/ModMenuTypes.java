@@ -43,4 +43,12 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<WitheringPhotonIrradiatorMenu>> WITHERING_PHOTON_IRRADIATOR =
             MENU_TYPES.register("withering_photon_irradiator",
                     () -> IMenuTypeExtension.create(WitheringPhotonIrradiatorMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<HeatEaterMenu>> HEAT_EATER_MENU =
+            MENU_TYPES.register("heat_eater_menu",
+                    () -> IMenuTypeExtension.create(HeatEaterMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<SolarisRestraintMenu>> SOLARIS_RESTRAINT_MENU =
+            MENU_TYPES.register("solaris_restraint",
+                    () -> IMenuTypeExtension.create(SolarisRestraintMenu::new));
 }

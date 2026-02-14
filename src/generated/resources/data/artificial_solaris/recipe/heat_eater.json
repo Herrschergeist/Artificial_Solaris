@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "artificial_solaris:excited_gold_block"
+    },
+    "G": {
+      "item": "artificial_solaris:greed_matrix"
+    },
+    "S": {
+      "item": "artificial_solaris:stellar_cage_tier2"
+    }
+  },
+  "pattern": [
+    "BSB",
+    "SGS",
+    "BSB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "artificial_solaris:heat_eater"
+  }
+}

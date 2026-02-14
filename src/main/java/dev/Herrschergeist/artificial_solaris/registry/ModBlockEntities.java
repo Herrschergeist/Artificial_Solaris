@@ -59,4 +59,11 @@ public class ModBlockEntities {
                                     ModBlocks.SOLARIS_RESTRAINT.get())
                             .build(null));
 
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<HeatEaterBlockEntity>>
+            HEAT_EATER_BE = BLOCK_ENTITIES.register("heat_eater_be",
+            () -> BlockEntityType.Builder
+                    .of(HeatEaterBlockEntity::new, ModBlocks.HEAT_EATER.get())
+                    .build(null)
+    );
+
 }

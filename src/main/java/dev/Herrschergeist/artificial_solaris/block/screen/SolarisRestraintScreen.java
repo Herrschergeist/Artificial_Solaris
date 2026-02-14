@@ -2,7 +2,7 @@ package dev.Herrschergeist.artificial_solaris.block.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.Herrschergeist.artificial_solaris.artificial_solaris;
-import dev.Herrschergeist.artificial_solaris.block.menu.SolarPanelMenu;
+import dev.Herrschergeist.artificial_solaris.block.menu.SolarisRestraintMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -12,19 +12,18 @@ import net.minecraft.world.entity.player.Inventory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu> {
+public class SolarisRestraintScreen extends AbstractContainerScreen<SolarisRestraintMenu> {
 
     private static final ResourceLocation TEXTURE =
             ResourceLocation.fromNamespaceAndPath(artificial_solaris.MOD_ID,
                     "textures/gui/container/energy_gui.png");
 
-    // Energy bar position (same as HeatEater)
     private static final int ENERGY_X      = 7;
     private static final int ENERGY_Y      = 23;
     private static final int ENERGY_WIDTH  = 164;
     private static final int ENERGY_HEIGHT = 36;
 
-    public SolarPanelScreen(SolarPanelMenu menu, Inventory playerInventory, Component title) {
+    public SolarisRestraintScreen(SolarisRestraintMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.imageWidth  = 176;
         this.imageHeight = 166;
@@ -53,9 +52,9 @@ public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY) {
-        // Title already contains the correct translated panel name
-        int nameX = (imageWidth - font.width(title)) / 2;
-        graphics.drawString(font, title, nameX, 6, 0x404040, false);
+        // Title centered at top
+        int titleX = (imageWidth - font.width(title)) / 2;
+        graphics.drawString(font, title, titleX, 6, 0x404040, false);
 
         // Player inventory label
         graphics.drawString(font, playerInventoryTitle, inventoryLabelX, inventoryLabelY, 0x404040, false);
@@ -89,13 +88,6 @@ public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu> {
             }
             graphics.renderComponentTooltip(font, tooltip, mouseX, mouseY);
         }
-    }
-
-    // Helpers
-    public int getEnergyPercent() {
-        int max = menu.getMaxEnergy();
-        if (max == 0) return 0;
-        return (int) ((menu.getEnergy() * 100L) / max);
     }
 
     private static String formatFE(long fe) {

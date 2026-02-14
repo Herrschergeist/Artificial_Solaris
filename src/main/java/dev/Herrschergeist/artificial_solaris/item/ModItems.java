@@ -112,6 +112,12 @@ public class ModItems {
                             new Item.Properties()
                                     .rarity(Rarity.RARE)));
 
+    public static final DeferredItem<BlockItem> HEAT_EATER =
+            ITEMS.register("heat_eater",
+                    () -> new BlockItem(ModBlocks.HEAT_EATER.get(),
+                            new Item.Properties()
+                                    .rarity(Rarity.UNCOMMON)));
+
     public static final DeferredItem<BlockItem> PROTOSTAR =
             ITEMS.register("protostar",
                     () -> new BlockItem(ModBlocks.PROTOSTAR.get(),

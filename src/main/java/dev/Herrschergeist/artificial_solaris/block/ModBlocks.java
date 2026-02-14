@@ -9,11 +9,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ChainBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
+
+import static net.minecraft.world.item.Items.registerBlock;
 
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS =
@@ -299,9 +302,16 @@ public class ModBlocks {
     // ─── Star Blocks ──────────────────────────────
     public static final DeferredBlock<Block> SOLARIS_RESTRAINT = BLOCKS.register("solaris_restraint",
             () -> new SolarisRestraintBlock(BlockBehaviour.Properties.of()
-                    .strength(5.0f, 6.0f)
+                    .strength(5.0f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> HEAT_EATER = BLOCKS.register("heat_eater",
+            () -> new HeatEaterBlock(BlockBehaviour.Properties.of()
+                    .strength(3.5f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)
+                    .lightLevel(state -> 4)));
 
 
     public static final DeferredBlock<Block> PROTOSTAR = BLOCKS.register(

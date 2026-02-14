@@ -177,9 +177,10 @@ public class SolarPanelBlockEntity extends BlockEntity implements MenuProvider {
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("container.artificial_solaris.solar_panel");
+        // Use block's translation key for unique name per tier
+        return Component.translatable("container." + getBlockState().getBlock()
+                .getDescriptionId().replace("block.", ""));
     }
-
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
         return new SolarPanelMenu(containerId, playerInventory, this, this.dataAccess);

@@ -87,7 +87,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(ModBlocks.DRAGON_FORGE.get())
                 .add(ModBlocks.EXCITED_GOLD_BLOCK.get())
                 .add(ModBlocks.EXCITED_GOLD_CHAIN.get())
-                .add(ModBlocks.PROTOSTAR.get());
+                .add(ModBlocks.PROTOSTAR.get())
+                .add(ModBlocks.HEAT_EATER.get());
 
         // ═══════════════════════════════════════════════════════
         // NEEDS DIAMOND TOOL - netherite and withering tier blocks
