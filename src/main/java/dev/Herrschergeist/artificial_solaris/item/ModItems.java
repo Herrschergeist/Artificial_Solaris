@@ -102,6 +102,10 @@ public class ModItems {
             ITEMS.register("resurrected_logic",
                     () -> new Item(new Item.Properties()));
 
+    public static final DeferredItem<Item> GREED_MATRIX =
+            ITEMS.register("greed_matrix",
+                    () -> new Item(new Item.Properties()));
+
     public static final DeferredItem<BlockItem> SOLARIS_RESTRAINT =
             ITEMS.register("solaris_restraint",
                     () -> new BlockItem(ModBlocks.SOLARIS_RESTRAINT.get(),

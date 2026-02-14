@@ -304,8 +304,9 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
             return false;
         }
 
-        // Check resources
-        if (waterStored < waterPerTick || energyStorage.getEnergyStored() < energyPerTick) {
+        // Check if enough resources for full craft
+        if (waterStored < currentRecipe.getWaterCost() ||
+                energyStorage.getEnergyStored() < currentRecipe.getEnergyCost()) {
             return false;
         }
 
@@ -367,22 +368,25 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
     private void craftItem() {
         if (currentRecipe == null) return;
 
-        // Consume water and energy every tick
-        waterStored -= waterPerTick;
-        energyStorage.extractEnergy(energyPerTick, false);
-
-        // On completion
+        // On completion - consume everything at once
         if (progress >= currentRecipe.getProcessingTime() - 1) {
-            // Consume blaze powder once
+            // Consume blaze powder
             inventory.getStackInSlot(0).shrink(1);
 
-            // Consume input items - match by ingredient, not by slot position
+            // Consume water all at once
+            waterStored -= currentRecipe.getWaterCost();
+            if (waterStored < 0) waterStored = 0;
+
+            // Consume energy all at once
+            energyStorage.extractEnergyInternal(currentRecipe.getEnergyCost(), false);
+
+            // Consume input items
             for (DragonForgeRecipe.CountedIngredient ci : currentRecipe.getInputs()) {
                 for (int i = 3; i <= 5; i++) {
                     ItemStack stack = inventory.getStackInSlot(i);
                     if (ci.ingredient().test(stack) && stack.getCount() >= ci.count()) {
                         stack.shrink(ci.count());
-                        break; // Move to next ingredient
+                        break;
                     }
                 }
             }
@@ -465,6 +469,15 @@ public class DragonForgeBlockEntity extends BlockEntity implements MenuProvider 
 
         public void setEnergy(int energy) {
             this.energy = energy;
+        }
+
+        // Internal extraction ignores maxExtract limit
+        public int extractEnergyInternal(int amount, boolean simulate) {
+            int extracted = Math.min(this.energy, amount);
+            if (!simulate) {
+                this.energy -= extracted;
+            }
+            return extracted;
         }
     }
 }

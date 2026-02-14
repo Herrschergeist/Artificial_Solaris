@@ -61,6 +61,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.NOX_CAUGHT_GEM.get());
         basicItem(ModItems.PURE_STAR.get());
         basicItem(ModItems.RESURRECTED_LOGIC.get());
+        basicItem(ModItems.GREED_MATRIX.get());
 
         // ═══════════════════════════════════════════════════════
         // STELLAR CAGES

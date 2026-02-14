@@ -7,6 +7,6 @@
   ],
   "result": { "id": "artificial_solaris:resurrected_logic", "count": 1 },
   "energy": 200000,
-  "water": 10000,
+  "water": 1000,
   "time": 200
 }
